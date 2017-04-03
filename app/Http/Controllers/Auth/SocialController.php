@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 class SocialController extends Controller
 {
     public function login($provider)
@@ -22,21 +21,20 @@ class SocialController extends Controller
     {
         $this->validateProvider($provider);
 
-        $driver   = Socialite::driver($provider);
+        $driver = Socialite::driver($provider);
         $user = $service->createOrGetUser($driver, $provider);
 
-        if($user) {
+        if ($user) {
             Auth::login($user, true);
         }
 
         return redirect()->intended('/');
-
     }
 
     private function validateProvider(string $provider)
     {
-         if(!in_array($provider, ['facebook', 'vkontakte'])) {
-             throw new NotFoundHttpException;
-         }
+        if (!in_array($provider, ['facebook', 'vkontakte'])) {
+            throw new NotFoundHttpException;
+        }
     }
 }

@@ -3,25 +3,24 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 03.04.17
- * Time: 10:03
+ * Time: 10:03.
  */
 
 namespace App\Admin\Sections;
 
+use AdminForm;
 use AdminColumn;
 use AdminDisplay;
-use AdminForm;
-use AdminFormElement;
 use App\Models\User;
-use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
-use SleepingOwl\Admin\Contracts\Form as FormInterface;
-use SleepingOwl\Admin\Contracts\Initializable;
-use SleepingOwl\Admin\Form\FormElements;
+use AdminFormElement;
 use SleepingOwl\Admin\Section;
+use SleepingOwl\Admin\Form\FormElements;
+use SleepingOwl\Admin\Contracts\Initializable;
+use SleepingOwl\Admin\Contracts\Form as FormInterface;
+use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
 
 class Users extends Section implements Initializable
 {
-
     /**
      * Initialize class.
      */
@@ -107,7 +106,7 @@ class Users extends Section implements Initializable
                     'user' => 'User',
                     'moderator' => 'Moderator',
                     'administrator' => 'Administrator',
-                    'chief' => 'Cheif'
+                    'chief' => 'Cheif',
                 ]),
                 AdminFormElement::checkbox('send_password', trans('admin_users.fields.send_mail'))
                     ->setVisibilityCondition(function ($model) use ($create) {
@@ -130,7 +129,7 @@ class Users extends Section implements Initializable
                     'cn' => trans('admin_users.fields.country.cn'),
                 ]),
                 AdminFormElement::text('city', trans('admin_users.fields.city')),
-                AdminFormElement::textarea('about', trans('admin_users.fields.about'))
+                AdminFormElement::textarea('about', trans('admin_users.fields.about')),
             ]),
             trans('admin_users.tabs.contacts') => new FormElements([
                 AdminFormElement::text('skype', trans('admin_users.fields.skype')),
@@ -151,6 +150,4 @@ class Users extends Section implements Initializable
     {
         return $this->onEdit(null, true);
     }
-
-
 }

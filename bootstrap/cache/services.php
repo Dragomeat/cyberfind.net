@@ -1,6 +1,7 @@
-<?php return array (
-  'providers' => 
-  array (
+<?php
+
+return  [
+  'providers' => [
     0 => 'Illuminate\\Auth\\AuthServiceProvider',
     1 => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
     2 => 'Illuminate\\Bus\\BusServiceProvider',
@@ -33,9 +34,8 @@
     29 => 'App\\Providers\\AuthServiceProvider',
     30 => 'App\\Providers\\EventServiceProvider',
     31 => 'App\\Providers\\RouteServiceProvider',
-  ),
-  'eager' => 
-  array (
+  ],
+  'eager' => [
     0 => 'Illuminate\\Auth\\AuthServiceProvider',
     1 => 'Illuminate\\Cookie\\CookieServiceProvider',
     2 => 'Illuminate\\Database\\DatabaseServiceProvider',
@@ -53,9 +53,8 @@
     14 => 'App\\Providers\\AuthServiceProvider',
     15 => 'App\\Providers\\EventServiceProvider',
     16 => 'App\\Providers\\RouteServiceProvider',
-  ),
-  'deferred' => 
-  array (
+  ],
+  'deferred' => [
     'Illuminate\\Broadcasting\\BroadcastManager' => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
     'Illuminate\\Contracts\\Broadcasting\\Factory' => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
     'Illuminate\\Contracts\\Broadcasting\\Broadcaster' => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
@@ -149,53 +148,37 @@
     'command.ide-helper.generate' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     'command.ide-helper.models' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     'Laravel\\Socialite\\Contracts\\Factory' => 'SocialiteProviders\\Manager\\ServiceProvider',
-  ),
-  'when' => 
-  array (
-    'Illuminate\\Broadcasting\\BroadcastServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Bus\\BusServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Cache\\CacheServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Hashing\\HashServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Mail\\MailServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Pipeline\\PipelineServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Queue\\QueueServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Redis\\RedisServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Translation\\TranslationServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Validation\\ValidationServiceProvider' => 
-    array (
-    ),
-    'Laravel\\Tinker\\TinkerServiceProvider' => 
-    array (
-    ),
-    'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => 
-    array (
-    ),
-    'SocialiteProviders\\Manager\\ServiceProvider' => 
-    array (
-    ),
-  ),
-);
+  ],
+  'when' => [
+    'Illuminate\\Broadcasting\\BroadcastServiceProvider' => [
+    ],
+    'Illuminate\\Bus\\BusServiceProvider' => [
+    ],
+    'Illuminate\\Cache\\CacheServiceProvider' => [
+    ],
+    'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider' => [
+    ],
+    'Illuminate\\Hashing\\HashServiceProvider' => [
+    ],
+    'Illuminate\\Mail\\MailServiceProvider' => [
+    ],
+    'Illuminate\\Pipeline\\PipelineServiceProvider' => [
+    ],
+    'Illuminate\\Queue\\QueueServiceProvider' => [
+    ],
+    'Illuminate\\Redis\\RedisServiceProvider' => [
+    ],
+    'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider' => [
+    ],
+    'Illuminate\\Translation\\TranslationServiceProvider' => [
+    ],
+    'Illuminate\\Validation\\ValidationServiceProvider' => [
+    ],
+    'Laravel\\Tinker\\TinkerServiceProvider' => [
+    ],
+    'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => [
+    ],
+    'SocialiteProviders\\Manager\\ServiceProvider' => [
+    ],
+  ],
+];

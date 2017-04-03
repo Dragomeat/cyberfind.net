@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use ReCaptcha\ReCaptcha;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use ReCaptcha\ReCaptcha;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(ReCaptcha $captcha)
     {
-        Validator::extend('recaptcha', function($attribute, $value, $parameters, $validator) use ($captcha) {
+        Validator::extend('recaptcha', function ($attribute, $value, $parameters, $validator) use ($captcha) {
             $request = $captcha->verify($value, request()->ip());
 
             return $request->isSuccess();
@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ReCaptcha::class, function() {
+        $this->app->singleton(ReCaptcha::class, function () {
             return new ReCaptcha(
                 config('services.recaptcha.secret_key')
             );

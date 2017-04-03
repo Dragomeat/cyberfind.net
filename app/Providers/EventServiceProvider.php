@@ -29,7 +29,6 @@ class EventServiceProvider extends ServiceProvider
     {
         User::observe(User\AvatarUploaderObserver::class);
 
-
         parent::boot();
     }
 }

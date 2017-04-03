@@ -3,14 +3,13 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 03.04.17
- * Time: 10:38
+ * Time: 10:38.
  */
 
 namespace App\Models\User;
 
-
-use App\Jobs\UploadAvatarProcess;
 use App\Models\User;
+use App\Jobs\UploadAvatarProcess;
 use Illuminate\Contracts\Bus\Dispatcher;
 
 class AvatarUploaderObserver
@@ -37,5 +36,4 @@ class AvatarUploaderObserver
 
         $this->dispatcher->dispatch(new UploadAvatarProcess($user));
     }
-
 }

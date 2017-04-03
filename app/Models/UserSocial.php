@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\UserSocial
+ * App\Models\UserSocial.
  *
  * @property int $id
  * @property int $user_id
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserSocial extends Model
 {
     protected $fillable = [
-        'user_id', 'provider_user_id', 'provider'
+        'user_id', 'provider_user_id', 'provider',
     ];
 
     public function user()

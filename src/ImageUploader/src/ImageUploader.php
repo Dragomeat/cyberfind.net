@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
  */
 class ImageUploader implements ImageUploaderInterface
 {
-    /**
+    /*
      * Image upload helper.
      */
     use ImageUploaderEvents;
@@ -138,7 +138,7 @@ class ImageUploader implements ImageUploaderInterface
      */
     private function getStorageFilename(): string
     {
-        return storage_path(static::TEMP_PATH . '/' . $this->createRandomName());
+        return storage_path(static::TEMP_PATH.'/'.$this->createRandomName());
     }
 
     /**
@@ -146,7 +146,7 @@ class ImageUploader implements ImageUploaderInterface
      */
     private function createRandomName(): string
     {
-        return md5(random_int(0, PHP_INT_MAX) . microtime());
+        return md5(random_int(0, PHP_INT_MAX).microtime());
     }
 
     /**
@@ -196,7 +196,7 @@ class ImageUploader implements ImageUploaderInterface
      */
     private function removeTemporaryFileOrFail(string $temporaryFilename): bool
     {
-        if (! $this->removeTemporaryFile($temporaryFilename)) {
+        if (!$this->removeTemporaryFile($temporaryFilename)) {
             throw new FileException("Can not remove temporary file ${temporaryFilename}.");
         }
 
@@ -209,7 +209,7 @@ class ImageUploader implements ImageUploaderInterface
      */
     private function removeTemporaryFile(string $temporaryFilename): bool
     {
-        return @unlink($temporaryFilename) || ! is_file($temporaryFilename);
+        return @unlink($temporaryFilename) || !is_file($temporaryFilename);
     }
 
     /**
@@ -219,6 +219,6 @@ class ImageUploader implements ImageUploaderInterface
      */
     public function getDefaultResolver(...$options): ImageResolverInterface
     {
-        throw new \BadMethodCallException(static::class . ' has no available image resolvers.');
+        throw new \BadMethodCallException(static::class.' has no available image resolvers.');
     }
 }
