@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Traits\GetsUrlSocialNetworks;
 use App\Models\User\GravatarSupportable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Traits\GetsUrlSocialNetworks;
 use Service\ImageUploader\Resolvers\GravatarSupports;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * App\Models\User
+ * App\Models\User.
  *
  * @property int $id
  * @property string $login
@@ -74,7 +74,7 @@ class User extends Authenticatable implements GravatarSupports
         'age', 'gender', 'first_name', 'last_name', 'middle_name',
         'country', 'city', 'about', 'skype',
         'telephone', 'show_email',
-        'role', 'is_confirmed'
+        'role', 'is_confirmed',
     ];
 
     /**
@@ -96,7 +96,7 @@ class User extends Authenticatable implements GravatarSupports
      */
     public function hasAvatar(): bool
     {
-        if(key_exists('avatar', $this->original) && key_exists('avatar_rendered', $this->original)) {
+        if (array_key_exists('avatar', $this->original) && array_key_exists('avatar_rendered', $this->original)) {
             return true;
         }
 

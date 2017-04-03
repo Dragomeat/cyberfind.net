@@ -172,7 +172,7 @@ return [
         SocialiteProviders\Manager\ServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 
-        /**
+        /*
          * SleepingOwl Service Provider
          */
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,

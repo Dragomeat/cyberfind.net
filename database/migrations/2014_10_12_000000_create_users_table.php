@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
             $table->boolean('avatar_rendered')->default(false);
 
             $table->integer('age')->nullable();
-            $table->enum('gender',[
+            $table->enum('gender', [
                 'female',
-                'male'
+                'male',
             ])->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
                 'ru',
                 'ua',
                 'us',
-                'cn'
+                'cn',
             ])->nullable();
             $table->string('city')->nullable();
             $table->mediumText('about')->nullable();
@@ -46,7 +46,7 @@ class CreateUsersTable extends Migration
                 'user',
                 'moderator',
                 'administrator',
-                'chief'
+                'chief',
             ])->default('user');
             $table->rememberToken();
             $table->timestamps();

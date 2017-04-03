@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 03.04.17
- * Time: 21:09
+ * Time: 21:09.
  */
 
 namespace App\Models\Traits;
-
 
 trait GetsUrlSocialNetworks
 {
