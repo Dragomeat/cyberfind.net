@@ -8,7 +8,6 @@ use App\Http\Requests\Auth\UpdateProfileRequest;
 
 class ProfileController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
@@ -18,12 +17,12 @@ class ProfileController extends Controller
     public function show($id)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
         return view('profile.index', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -36,14 +35,14 @@ class ProfileController extends Controller
     public function edit($id)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
         $this->authorize('update', $user);
 
         return view('profile.edit', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -55,7 +54,7 @@ class ProfileController extends Controller
     public function update(UpdateProfileRequest $request, $id)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
@@ -72,7 +71,7 @@ class ProfileController extends Controller
             'gender',
             'about',
             'skype',
-            'telephone'
+            'telephone',
         ]);
 
         foreach ($fields as $key => $value) {

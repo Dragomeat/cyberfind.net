@@ -18,6 +18,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'email' => 'admin@cyberfind.net',
         'password' => bcrypt('secret'),
         'is_confirmed' => true,
-        'role' => 'chief'
+        'role' => 'chief',
     ];
 });

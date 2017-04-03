@@ -57,8 +57,8 @@ class FileSize implements GateInterface
         if (filter_var($imagePath, FILTER_VALIDATE_URL)) {
             $headers = get_headers($imagePath, 1, stream_context_create([
                 'http' => [
-                    'method' => 'HEAD'
-                ]
+                    'method' => 'HEAD',
+                ],
             ]));
 
             if ($headers) {
@@ -67,7 +67,6 @@ class FileSize implements GateInterface
         } else {
             $currentSize = filesize($imagePath);
         }
-
 
         if ($currentSize > $this->maxSize || $currentSize < $this->minSize) {
             $message = 'Image size (%sb) are out of range [%s...%s]';

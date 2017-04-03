@@ -18,19 +18,14 @@ Route::get('/auth/login', 'Auth\LoginController@showLoginForm')->name('auth.logi
 Route::post('/auth/login', 'Auth\LoginController@login')->name('auth.login.post');
 Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
-Route::get('/auth/s/{provider}','Auth\SocialController@login')->name('auth.social');
-Route::get('/auth/s/{provider}/callback','Auth\SocialController@callback');
+Route::get('/auth/s/{provider}', 'Auth\SocialController@login')->name('auth.social');
+Route::get('/auth/s/{provider}/callback', 'Auth\SocialController@callback');
 
 Route::resource('profile', 'ProfileController', [
-    'only' => ['show', 'edit', 'update']
+    'only' => ['show', 'edit', 'update'],
 ]);
 
-
-
-
 Route::get('/auth/register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
-
-
 
 // // Authentication Routes...
 //        $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');

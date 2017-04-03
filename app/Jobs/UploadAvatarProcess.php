@@ -3,15 +3,15 @@
 namespace App\Jobs;
 
 use App\Models\User;
+use Psr\Log\LoggerInterface;
 use Illuminate\Bus\Queueable;
+use Intervention\Image\ImageManager;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Intervention\Image\ImageManager;
-use Psr\Log\LoggerInterface;
 use Service\ImageUploader\AvatarUploader;
 use Service\ImageUploader\Gates\FileSize;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
 
 class UploadAvatarProcess implements ShouldQueue
@@ -34,7 +34,6 @@ class UploadAvatarProcess implements ShouldQueue
         $this->user = $user;
     }
 
-
     public function handle(ImageManager $manager, Storage $storage, LoggerInterface $logger)
     {
         $accepted = function (string $path) use ($logger) {
@@ -42,7 +41,7 @@ class UploadAvatarProcess implements ShouldQueue
             $this->user->avatar_rendered = true;
             $this->user->save();
 
-            $logger->info('Queue: Update avatar for user ' . $this->user->login);
+            $logger->info('Queue: Update avatar for user '.$this->user->login);
         };
 
         $rejected = function (\Throwable $err) use ($logger) {

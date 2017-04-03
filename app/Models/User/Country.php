@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 03.04.17
- * Time: 23:08
+ * Time: 23:08.
  */
 
 namespace App\Models\User;
-
 
 use CommerceGuys\Enum\AbstractEnum;
 

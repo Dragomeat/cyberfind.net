@@ -3,16 +3,15 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 03.04.17
- * Time: 18:38
+ * Time: 18:38.
  */
 
 namespace App\Services\Auth;
 
 use App\Models\User;
 use App\Models\UserSocial;
-use Doctrine\DBAL\Driver\PDOException;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
+use Illuminate\Database\QueryException;
 use SocialiteProviders\Manager\Contracts\OAuth2\ProviderInterface;
 
 class SocialService
@@ -23,11 +22,11 @@ class SocialService
 
         $accountData = [
             'provider_user_id' => $socialUser->getId(),
-            'provider' => $providerName
+            'provider' => $providerName,
         ];
 
         /**
-         * @var UserSocial $account
+         * @var UserSocial
          */
         $account = UserSocial::firstOrNew($accountData, $accountData);
 
@@ -37,14 +36,14 @@ class SocialService
 
         try {
             /**
-             * @var User $user
+             * @var User
              */
             $user = User::create([
                 'login' => $socialUser->getNickname(),
                 'email' => $socialUser->getEmail(),
                 'password' => bcrypt(
                     Str::random()
-                )
+                ),
             ]);
         } catch (QueryException $e) {
             return null;

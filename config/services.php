@@ -44,11 +44,11 @@ return [
     'steam' => [
         'client_id' => null,
         'client_secret' => env('STEAM_SECRET'),
-        'redirect' => env('STEAM_REDIRECT_URI')
+        'redirect' => env('STEAM_REDIRECT_URI'),
     ],
 
     'recaptcha' => [
         'site_key' => env('RECAPTCHA_KEY'),
-        'secret_key' => env('RECAPTCHA_SECRET')
-    ]
+        'secret_key' => env('RECAPTCHA_SECRET'),
+    ],
 ];
