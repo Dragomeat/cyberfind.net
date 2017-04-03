@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/jquery.formstyler.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
@@ -21,67 +22,108 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+<header class="b_box header">
+    <div class="b_inb">
+        <a href="#" class="h_logo"></a>
+        <div class="h_info">
+            <div class="h_auth">
+                @if(Auth::check())
+                    {{--<a href="#" class="h_mail" title="Сообщения"></a>--}}
+                    <a href="{{ route('profile.show', Auth::id()) }}" class="h_profile" title="Ваш профиль"></a>
+                    <form action="{{ route('auth.logout') }}" method="POST" id="_logout" style="display: none;">
+                        {!! csrf_field() !!}
+                    </form>
+                    <a href="{{ route('auth.logout') }}" onclick="event.preventDefault();
+                      document.getElementById('_logout').submit();" class="h_logout" title="Выйти"></a>
+                @else
+                    <a href="#" class="h_steam" title="Войти через Steam"></a>
+                    <a href="{{ route('auth.login') }}" class="h_logout h_login" data-event="login" title="Войти"></a>
+                @endif
             </div>
-        </nav>
-
-        @yield('content')
+            <nav class="h_nav">
+                <ul>
+                    <li class="current-menu-item"><a href="#">ГЛАВНАЯ</a></li>
+                    <li><a href="#">ПОИСК ИГРОКА</a></li>
+                    <li><a href="#">ПОИСК КОМАНДЫ</a></li>
+                    <li><a href="#">О НАС</a></li>
+                    <li><a href="#">ПАРТНЕРЫ</a></li>
+                    <li><a href="#">КОНТАКТЫ</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
+</header><!-- .header-->
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<main class="b_box content">
+    @yield('content')
+</main><!-- .content -->
+
+<footer class="b_box footer">
+    <div class="b_inb">
+        <div class="f_copy"><a href="{{ route('index') }}">{{ config('app.name') }}</a> &copy; 2010-{{ date('Y') }}.
+        </div>
+        <ul class="f_soc">
+            <li class="gp"><a href="#"></a></li>
+            <li class="tw"><a href="#"></a></li>
+            <li class="vk"><a href="#"></a></li>
+            <li class="fb"><a href="#"></a></li>
+            <li class="in"><a href="#"></a></li>
+            <li class="yt"><a href="#"></a></li>
+            <li class="sm"><a href="#"></a></li>
+            <li class="ok"><a href="#"></a></li>
+        </ul>
+    </div>
+</footer><!-- .footer -->
+
+<div class="intop">Наверх</div>
+
+<div class="popup-login popup">
+    <div class="popup-close">x</div>
+    <div class="popup-head">
+        <div class="popup-title">Вход</div>
+    </div>
+    <div class="popup-body">
+        <form action="{{ route('auth.login.post') }}" method='post' class="form">
+            <div class='form-label'>
+                <label>E-mail</label>
+                <input type="email" name='email'/>
+            </div>
+            <div class='form-label'>
+                <label>Пароль</label>
+                <input type="password" name="password"/>
+                <div class="popup-forgetpass"><a href="#">Забыли пароль?</a></div>
+            </div>
+            <div class="form-label">
+                <div class="g-recaptcha" data-theme="dark"
+                     data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                {!! csrf_field() !!}
+            </div>
+            <input type="submit" value='ВОЙТИ И ИГРАТЬ'>
+        </form>
+    </div>
+    <div class="popup-bottom">
+        <a href="#" class="popup-bottom-notakk">Нет аккаунта?</a>
+        <a href="#" class="popup-bottom-reg">регистрация сейчас ></a>
+    </div>
+</div>
+
+<div class="popup-thy popup">
+    <div class="popup-close"></div>
+    <div class="popup-head">
+        <div class="popup-title">Ваша заявка успешно отправлена.</div>
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+<!-- Scripts -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="{{ asset('js/jquery.forms.js') }}"></script>
+<script src="{{ asset('js/jquery.formstyler.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

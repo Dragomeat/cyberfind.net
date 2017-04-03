@@ -1,68 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+    <div class="b_inb">
+        <div class="c_breadcrumbs">
+            <a href="#">Главная</a> /
+            <span class="current">Вход</span>
+        </div>
+        <div class="c_box">
+            <div class="c_box-contact">
+                <h1>Вход</h1>
+                <div class="c_box-ins">
+                    <div class="c_reg-form">
+                        <form action="{{ route('auth.login.post') }}" method="POST">
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Email:</div>
+                                <div class="c_reg-item__box"><input type="email" name="email"/></div>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Пароль:</div>
+                                <div class="c_reg-item__box"><input type="password" name="password"/></div>
                             </div>
-                        </div>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <div class="g-recaptcha" data-theme="dark" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                                </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
+                                {!! csrf_field() !!}
+                            </div>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <input type="submit" value="Вход">
+                                    {{--<a href="{{ route('auth.restore.email') }}" class="c_reg-login" data-event="restore">Забыли пароль?</a>--}}
+                                    <a href="{{ route('auth.register') }}" class="c_reg-login" data-event="register">Нет акаунта?</a>
+                                    <div class="c_reg-socials">
+                                        <ul class="f_soc">
+                                            <li class="vk"><a href="{{ route('auth.social', 'vkontakte') }}"></a></li>
+                                            <li class="fb"><a href="{{ route('auth.social', 'facebook') }}"></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

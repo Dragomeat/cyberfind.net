@@ -1,76 +1,63 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+    <div class="b_inb">
+        <div class="c_breadcrumbs">
+            <a href="#">Главная</a> /
+            <span class="current">Регистрация</span>
+        </div>
+        <div class="c_box">
+            <div class="c_box-contact">
+                <h1>Регистрация</h1>
+                <div class="c_box-ins">
+                    <div class="c_reg-form">
+                        <form action="" method="POST">
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Имя:</div>
+                                <div class="c_reg-item__box"><input type="text" name="first-name"></div>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Фамилия:</div>
+                                <div class="c_reg-item__box"><input type="text" name="last-name"></div>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Логин (мин. 3 символа):*</div>
+                                <div class="c_reg-item__box"><input type="text" name="nickname"></div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Пароль (мин. 6 символов):*</div>
+                                <div class="c_reg-item__box"><input type="pass" name="password"></div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Подтверждение пароля:*</div>
+                                <div class="c_reg-item__box"><input type="pass" name="req-password"></div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">E-mail:*</div>
+                                <div class="c_reg-item__box"><input type="email" name="email"></div>
+                            </div>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <img src="i/contact-control-thumbs.jpg" alt="control">
+                                    <div class="c_reg-item__refresh">Обновить</div>
+                                </div>
+                            </div>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Введите слово на картинке:*</div>
+                                <div class="c_reg-item__box"><input type="text" name="form-number"></div>
+                            </div>
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <input type="submit" value="Регистрация">
+                                    <a href="#" class="c_reg-login action" data-event="login">Вход</a>
+                                </div>
+                            </div>
+                            <div class="c_reg-item">На указанный в форме e-mail придет запрос на подтверждение регистрации.</div>
+                            <div class="c_reg-item">* Обязательно к заполнению</div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

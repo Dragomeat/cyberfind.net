@@ -5,11 +5,13 @@
     1 => 'Collective\\Html\\HtmlServiceProvider',
     2 => 'SleepingOwl\\Admin\\Providers\\BreadcrumbsServiceProvider',
     3 => 'SleepingOwl\\Admin\\Providers\\AdminServiceProvider',
+    4 => 'App\\Providers\\AdminSectionsServiceProvider',
   ),
   'eager' => 
   array (
     0 => 'SleepingOwl\\Admin\\Providers\\AliasesServiceProvider',
     1 => 'SleepingOwl\\Admin\\Providers\\AdminServiceProvider',
+    2 => 'App\\Providers\\AdminSectionsServiceProvider',
   ),
   'deferred' => 
   array (
