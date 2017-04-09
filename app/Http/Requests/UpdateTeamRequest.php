@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Team\Map;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateTeamRequest extends FormRequest
 {

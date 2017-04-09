@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Tags
+ * App\Models\Tags.
  *
  * @property int $id
  * @property string $name

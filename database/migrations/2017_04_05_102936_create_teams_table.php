@@ -43,7 +43,7 @@ class CreateTeamsTable extends Migration
                 'cobble',
                 'overpass',
                 'cache',
-                'inferno'
+                'inferno',
             ]);
         });
 
@@ -57,7 +57,7 @@ class CreateTeamsTable extends Migration
                 'commander',
                 'main_part',
                 'additional_part',
-                'manager'
+                'manager',
             ]);
             $table->enum('status', [
                 'pending',

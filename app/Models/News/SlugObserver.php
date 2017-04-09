@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 04.04.17
- * Time: 18:58
+ * Time: 18:58.
  */
 
 namespace App\Models\News;
@@ -18,7 +18,7 @@ class SlugObserver
      */
     public function creating(News $news)
     {
-        $news->slug = Str::slug($news->title) . '-' . ($this->getElementsLastId() + 1);
+        $news->slug = Str::slug($news->title).'-'.($this->getElementsLastId() + 1);
     }
 
     /**

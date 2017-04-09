@@ -38,7 +38,7 @@ class ContentRendererServiceProvider extends ServiceProvider
      */
     private function resolveConfig(): void
     {
-        $config = __DIR__ . '/../config/renderers.php';
+        $config = __DIR__.'/../config/renderers.php';
 
         // Publish config
         $this->publishes([$config => config_path('renderers.php')]);

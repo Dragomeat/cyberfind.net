@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class TeamPolicy
 {
@@ -32,5 +31,4 @@ class TeamPolicy
     {
         return $user->id === $team->commander->id;
     }
-
 }

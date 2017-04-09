@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Str;
+use App\Http\Requests\UpdateProfileRequest;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class ProfileController extends Controller
 {
@@ -19,7 +18,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
@@ -28,7 +27,7 @@ class ProfileController extends Controller
             'countries' => User\Country::getAll(),
             'gender' => User\Gender::getAll(),
             'vkProfile' => $user->vkontakteUrl,
-            'fbProfile' => $user->facebookUrl
+            'fbProfile' => $user->facebookUrl,
         ]);
     }
 
@@ -41,7 +40,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
@@ -50,7 +49,7 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $user,
             'countries' => User\Country::getAll(),
-            'gender' => User\Gender::getAll()
+            'gender' => User\Gender::getAll(),
         ]);
     }
 
@@ -63,7 +62,7 @@ class ProfileController extends Controller
     public function update(UpdateProfileRequest $request, Filesystem $fs, $id)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 

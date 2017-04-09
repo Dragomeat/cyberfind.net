@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateTeamRequest;
-use App\Http\Requests\JoinTeamRequest;
 use App\Models\Map;
 use App\Models\Team;
+use App\Http\Requests\JoinTeamRequest;
+use App\Http\Requests\CreateTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Arr;
 
 class TeamsController extends Controller
 {
@@ -17,14 +16,14 @@ class TeamsController extends Controller
         $teams = Team::paginate(10);
 
         return view('teams.index', [
-            'teams' => $teams
+            'teams' => $teams,
         ]);
     }
 
     public function show(int $id)
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -56,7 +55,7 @@ class TeamsController extends Controller
     public function edit(int $id)
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -87,7 +86,7 @@ class TeamsController extends Controller
             'city',
             'goal',
             'goal_text',
-            'join_additional'
+            'join_additional',
         ]);
 
         $maps = [];
@@ -107,7 +106,7 @@ class TeamsController extends Controller
             'contacts' => json_encode([
                 'socials' => $this->filterArray($request->intersect('socials')),
                 'contacts' => $this->filterArray($request->intersect('contacts')),
-            ])
+            ]),
         ]);
 
         if (count($maps) > 0) {
@@ -117,7 +116,6 @@ class TeamsController extends Controller
         if (count($deleteMaps) > 0) {
             $team->maps()->whereIn('map', $deleteMaps)->delete();
         }
-
 
         if ($team->update($attributes)) {
             return redirect()
@@ -137,7 +135,7 @@ class TeamsController extends Controller
             'city',
             'goal',
             'goal_text',
-            'join_additional'
+            'join_additional',
         ]);
 
         $maps = [];
@@ -149,7 +147,7 @@ class TeamsController extends Controller
             'contacts' => json_encode([
                 'socials' => $this->filterArray($request->intersect('socials')),
                 'contacts' => $this->filterArray($request->intersect('contacts')),
-            ])
+            ]),
         ]);
 
         while ($map = array_shift($inputMaps)) {
@@ -170,7 +168,7 @@ class TeamsController extends Controller
     public function join(JoinTeamRequest $request, Authenticatable $user, int $id)
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -188,7 +186,7 @@ class TeamsController extends Controller
         $teams = Team::search(request('search'))->paginate(10);
 
         return view('teams.index', [
-            'teams' => $teams
+            'teams' => $teams,
         ]);
     }
 

@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use App\Models\User\GravatarSupportable;
-use App\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\GetsUrlSocialNetworks;
-use Laravel\Scout\Searchable;
+use App\Notifications\ResetPasswordNotification;
 use Service\ImageUploader\Resolvers\GravatarSupports;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

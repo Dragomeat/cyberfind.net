@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Models\Team\Roles;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class JoinTeamRequest extends FormRequest
 {
@@ -28,8 +28,8 @@ class JoinTeamRequest extends FormRequest
         return [
             'role' => [
                 'required',
-                 Rule::in(Roles::getAll())
-            ]
+                 Rule::in(Roles::getAll()),
+            ],
         ];
     }
 }
