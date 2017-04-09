@@ -28,7 +28,7 @@ class AvatarUploaderObserver
         $this->dispatcher = $dispatcher;
     }
 
-    public function created(User $user)
+    public function saved(User $user)
     {
         if ($user->hasAvatar()) {
             return;

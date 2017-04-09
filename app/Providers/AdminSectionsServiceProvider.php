@@ -10,7 +10,9 @@ class AdminSectionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $sections = [
-        \App\Models\User::class => \App\Admin\Sections\Users::class,
+        \App\Models\User::class => \App\Admin\Sections\UsersSection::class,
+        \App\Models\News::class => \App\Admin\Sections\NewsSection::class,
+        \App\Models\Tags::class => \App\Admin\Sections\TagsSection::class
     ];
 
     /**

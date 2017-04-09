@@ -9,21 +9,24 @@
   "type": "project",
   "require": {
     "php": ">=5.6.4",
+    "algolia/algoliasearch-client-php": "^1.17",
     "barryvdh/laravel-debugbar": "^2.3",
     "barryvdh/laravel-ide-helper": "^2.3",
-    "cartalyst/sentinel": "^2.0",
     "commerceguys/enum": "~1.0",
+    "damiantw/laravel-scout-mysql-driver": "^1.0",
     "doctrine/dbal": "^2.5",
     "folklore/graphql": "~1.0",
     "google/recaptcha": "^1.1",
+    "intervention/image": "^2.3",
     "laravel/framework": "5.4.*",
+    "laravel/scout": "^3.0",
     "laravel/socialite": "^3.0",
     "laravel/tinker": "~1.0",
     "laravelrus/sleepingowl": "4.*@dev",
     "predis/predis": "^1.1",
     "socialiteproviders/steam": "^1.0",
     "socialiteproviders/vkontakte": "^3.0",
-    "tymon/jwt-auth": "~0.5",
+    "tymon/jwt-auth": "^0.5.10",
     "wikimedia/composer-merge-plugin": "^1.4"
   },
   "require-dev": {
@@ -70,7 +73,8 @@
   "extra": {
     "merge-plugin": {
       "require": [
-        "src/ImageUploader/composer.json"
+        "src/ImageUploader/composer.json",
+        "src/ContentRenderer/composer.json"
       ]
     }
   }

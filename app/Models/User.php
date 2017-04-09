@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\User\GravatarSupportable;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\GetsUrlSocialNetworks;
+use Laravel\Scout\Searchable;
 use Service\ImageUploader\Resolvers\GravatarSupports;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -58,10 +60,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereTelephone($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $gender
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\News[] $news
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereGender($value)
  */
 class User extends Authenticatable implements GravatarSupports
 {
-    use Notifiable, GravatarSupportable, GetsUrlSocialNetworks;
+    use Notifiable, Searchable, GravatarSupportable, GetsUrlSocialNetworks;
 
     /**
      * The attributes that are mass assignable.
@@ -91,12 +96,24 @@ class User extends Authenticatable implements GravatarSupports
         return $this->hasMany(UserSocial::class);
     }
 
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
     /**
      * @return bool
      */
     public function hasAvatar(): bool
     {
-        if (array_key_exists('avatar', $this->original) && array_key_exists('avatar_rendered', $this->original)) {
+        if (isset($this->original['avatar'], $this->original['avatar_rendered']) &&
+            $this->original['avatar'] !== null &&
+            $this->original['avatar_rendered']) {
             return true;
         }
 
@@ -116,5 +133,10 @@ class User extends Authenticatable implements GravatarSupports
         return $this->socials
             ->where('provider', $provider)
             ->first();
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

@@ -1,46 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="b_inb">
+        @component('parts.breadcrumbs', [
+            'elements' => $breadcrumbs
+        ])
+        @endcomponent
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
+        <div class="c_box">
+            <div class="c_box-contact">
+                <h1>Восстановление пароля</h1>
+                <div class="c_box-ins">
+                    <div class="c_reg-form">
+                        <form action="{{ route('auth.password.email') }}" method="POST">
+                            @if (session('status'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text"  style="border-color: green; color: green;" value="{{ session('status') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Email:</div>
+                                <div class="c_reg-item__box">
+                                    <input type="email" name="email" value="{{ old('email') }}"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
+                            @if($errors->has('email'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text" style="border-color: red; color: red;" value="{{ $errors->first('email') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <div class="g-recaptcha" data-theme="dark" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                                </div>
+
+                                {!! csrf_field() !!}
                             </div>
-                        </div>
-                    </form>
+                            @if($errors->has('g-recaptcha-response'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text" style="border-color: red; color: red;" value="{{ $errors->first('g-recaptcha-response') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <input type="submit" value="Восстановить пароль">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
+

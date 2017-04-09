@@ -4,6 +4,13 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private $faker;
+
+    public function __construct()
+    {
+        $this->faker = \Faker\Factory::create('ru_RU');
+    }
+
     /**
      * Run the database seeds.
      *
@@ -11,6 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\User::class)->create();
+        factory(\App\Models\User::class, 'users_admin')->create();
     }
 }

@@ -1,76 +1,86 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+    <div class="b_inb">
+        @component('parts.breadcrumbs', [
+            'elements' => $breadcrumbs
+        ])
+        @endcomponent
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <div class="c_box">
+            <div class="c_box-contact">
+                <h1>Восстановление пароля</h1>
+                <div class="c_box-ins">
+                    <div class="c_reg-form">
+                        <form action="{{ route('auth.password.reset.action') }}" method="POST">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="token" value="{{ $token }}">
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
-                        {{ csrf_field() }}
+                            @if (session('status'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text" style="border-color: green; color: green;"
+                                               value="{{ session('status') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
 
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Email:</div>
+                                <div class="c_reg-item__box">
+                                    <input type="email" name="email" value="{{ $email or old('email') }}"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            @if($errors->has('email'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text" style="border-color: red; color: red;"
+                                               value="{{ $errors->first('email') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Password:</div>
+                                <div class="c_reg-item__box">
+                                    <input type="password" name="password" value="{{ old('password') }}"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
+                            @if($errors->has('password'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text" style="border-color: red; color: red;"
+                                               value="{{ $errors->first('password') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__name">Password confirmation:</div>
+                                <div class="c_reg-item__box">
+                                    <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
-                                </button>
+                            @if($errors->has('password_confirmation'))
+                                <div class="c_reg-item">
+                                    <div class="c_reg-item__box">
+                                        <input type="text" style="border-color: red; color: red;"
+                                               value="{{ $errors->first('password_confirmation') }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="c_reg-item">
+                                <div class="c_reg-item__box">
+                                    <input type="submit" value="Восстановить пароль">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

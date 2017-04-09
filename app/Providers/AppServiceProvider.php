@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Team\Map;
 use ReCaptcha\ReCaptcha;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +21,16 @@ class AppServiceProvider extends ServiceProvider
             $request = $captcha->verify($value, request()->ip());
 
             return $request->isSuccess();
+        });
+
+        Validator::extend('maps', function ($attribute, $maps, $parameters, $validator) {
+            foreach ($maps as $map) {
+                if (!Map::exists($map)) {
+                    return false;
+                }
+            }
+
+            return true;
         });
     }
 

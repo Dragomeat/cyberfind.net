@@ -1,9 +1,347 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
+@import "fonts";
 // Variables
 @import "variables";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  background: url(/images/bg.jpg) center top repeat;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.c_section {
+  background: #171717;
+  padding: 16px 23px 28px;
+  border: 1px solid #383838;
+  margin: 0 auto;
+
+  .c_wrapper {
+    background-color: #171717;
+    border: 1px solid #626262;
+    padding: 26px 34px 70px;
+    position: relative;
+  }
+
+  .carousel-container {
+    margin-bottom: 20px;
+  }
+
+  .info-container {
+    margin-bottom: 60px;
+  }
+
+  .teamspeak-container {
+     .teamspeak-icon {
+       width: 134px;
+       height: 134px;
+       display: block;
+       border: 1px solid #262626;
+       border-radius: 15px;
+       background: #1F1F1F;
+     }
+    .teamspeak-list {
+      li {
+         color: #FFF;
+         min-height: 42px;
+         background-color: #1F1F1F;
+         border: 1px solid #262626;
+         margin-bottom: 6px;
+         font-size: 14px;
+         line-height: 20px;
+         padding: 10px 0 10px 5px;
+
+         .teamspeak-subscribe {
+           border-left: 1px solid #2B2B2B;
+           font-size: 13px;
+           line-height: 20px;
+           text-align: center;
+           text-transform: uppercase;
+
+           a {
+             color: #fff;
+           }
+         }
+       }
+    }
+
+  }
+
+}
+
+.info-container {
+  padding: 25px 35px;
+  position: relative;
+  background-color: #171717;
+  border: 1px solid #2E2E2E;
+}
+
+.c_panel {
+  background-color: #171717;
+  border: none;
+
+  .panel-heading {
+    color: #FFF;
+    font-size: 27px;
+    font-weight: bold;
+    line-height: 31px;
+    background-color: #171717;
+    text-transform: uppercase;
+    border-color: #2E2E2E;
+  }
+  .nav {
+    margin-bottom: 15px;
+
+    li {
+      font-size: 15px;
+      line-height: 20px;
+
+      &.active a {
+        color: #FF8000;
+      }
+
+      a {
+        background-color: transparent !important;
+        color: #858585;
+        border-radius: 0;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .more {
+    color: #fff;
+
+    a {
+      color: #fff;
+
+      &::after {
+        content: ' >>';
+      }
+    }
+  }
+
+
+}
+
+.c_media__news {
+  background-color: #1f1f1f;
+  border: 1px solid #3f3f3f;
+  padding: 16px 20px;
+
+  .media-left {
+
+    img {
+      width: 148px;
+      height: 127px;
+      overflow: hidden;
+    }
+  }
+
+  .media-body {
+    .media-heading {
+      color: #fff;
+    }
+
+    font-size: 13px;
+    line-height: 19px;
+  }
+}
+
+.c_table__tournaments {
+  font-size: 11px;
+  line-height: 13px;
+  color: #fff;
+
+  tr, td {
+    border-top: 1px solid #2B2B2B !important;
+    background-color: #1F1F1F;
+    text-align: center;
+  }
+
+  tr:first-child, tr:first-child > td {
+    background-color: transparent;
+  }
+}
+
+.c_header {
+  padding: 33px 0 27px;
+  background-color: black;
+  border: 0;
+
+  .c_header__image {
+    margin-top: -5px;
+  }
+
+  .c_header__navbar {
+    a {
+      color: #FFFFFF;
+      font-weight: 300;
+      font-size: 15px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: calc(50% - 8px);
+        border: 8px solid transparent;
+        border-bottom: 10px solid #FF6900;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        color: #FF6900;
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+    }
+  }
+}
+
+.c_footer {
+  .c_footer__content {
+    min-height: 90px;
+    padding: 33px 24px;
+    background-color: #1f1f1f;
+    overflow: hidden;
+
+    .c_copyrights {
+      line-height: 50px;
+
+      a {
+        color: #FFF;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .c_socials {
+      float: right;
+      margin-top: 10px;
+    }
+  }
+}
+
+.c_logotype {
+  color: #fff;
+
+  span {
+    color: #FF8000;
+  }
+}
+
+.dollars {
+   &::after {
+      content: '$';
+   }
+}
+
+.c_breadcrumbs {
+  background-color: transparent;
+  margin-bottom: 10px;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.c_panel__form {
+  background: #272727;
+
+   .panel-heading {
+     color: #FF6900;
+     font-size: 27px;
+     font-weight: normal;
+     line-height: 30px;
+     text-transform: none;
+   }
+}
+
+.c_socials__login {
+  margin-bottom: -10px;
+}
+
+.c_socials a {
+  display: block;
+  width: 31px;
+  height: 31px;
+  background: url(/images/bg-social.png) no-repeat;
+}
+
+.c_socials .gp a {
+  background-position: 0 0;
+}
+
+.c_socials .gp:hover {
+  background-position: 0 -31px;
+}
+
+.c_socials .tw a {
+  background-position: -42px 0;
+}
+
+.c_socials .tw:hover {
+  background-position: -42px -31px;
+}
+
+.c_socials .vk a {
+  background-position: -83px 0;
+}
+
+.c_socials .vk:hover {
+  background-position: -83px -31px;
+}
+
+.c_socials .fb a {
+  background-position: -124px 0;
+}
+
+.c_socials .fb:hover {
+  background-position: -124px -31px;
+}
+
+.c_socials .in a {
+  background-position: -165px 0;
+}
+
+.c_socials .in:hover {
+  background-position: -165px -31px;
+}
+
+.c_socials .yt a {
+  background-position: -207px 0;
+}
+
+.c_socials .yt:hover {
+  background-position: -207px -31px;
+}
+
+.c_socials .sm a {
+  background-position: -247px 0;
+}
+
+.c_socials .sm:hover {
+  background-position: -247px -31px;
+}
+
+.c_socials .ok a {
+  background-position: -288px 0;
+}
+
+.c_socials .ok:hover {
+  background-position: -288px -31px;
+}

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\Auth\UpdateProfileRequest;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -17,12 +19,16 @@ class ProfileController extends Controller
     public function show($id)
     {
         /**
-         * @var User
+         * @var User $user
          */
         $user = User::findOrFail($id);
 
         return view('profile.index', [
             'user' => $user,
+            'countries' => User\Country::getAll(),
+            'gender' => User\Gender::getAll(),
+            'vkProfile' => $user->vkontakteUrl,
+            'fbProfile' => $user->facebookUrl
         ]);
     }
 
@@ -35,7 +41,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         /**
-         * @var User
+         * @var User $user
          */
         $user = User::findOrFail($id);
 
@@ -43,18 +49,21 @@ class ProfileController extends Controller
 
         return view('profile.edit', [
             'user' => $user,
+            'countries' => User\Country::getAll(),
+            'gender' => User\Gender::getAll()
         ]);
     }
 
     /**
-     * @param UpdateProfileRequest $request
+     * @param UpdateProfileRequest $request *
+     * @param Filesystem $fs
      * @param $id
      * @return RedirectResponse
      */
-    public function update(UpdateProfileRequest $request, $id)
+    public function update(UpdateProfileRequest $request, Filesystem $fs, $id)
     {
         /**
-         * @var User
+         * @var User $user
          */
         $user = User::findOrFail($id);
 
@@ -79,6 +88,19 @@ class ProfileController extends Controller
                 $user->$key = $value;
             }
         }
+
+//        if ($request->get('avatar', 'off') === 'on') {
+//            $oldAvatar =  $user->avatar ?: public_path('static/avatars/' .$user->avatar);
+//
+//            if ($fs->exists($oldAvatar)) {
+//                $fs->delete(
+//                    $oldAvatar
+//                );
+//            }
+//
+//            $user->avatar = null;
+//            $user->avatar_rendered = false;
+//        }
 
         $user->save();
 

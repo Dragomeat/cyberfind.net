@@ -18,14 +18,15 @@ class CreateUsersTable extends Migration
             $table->string('login');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('avatar')->nullable();
-            $table->boolean('avatar_rendered')->default(false);
+           // $table->string('avatar')->nullable();
+           // $table->boolean('avatar_rendered')->default(false);
 
             $table->integer('age')->nullable();
             $table->enum('gender', [
                 'female',
                 'male',
-            ])->nullable();
+                'unknown',
+            ])->default('unknown');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('middle_name')->nullable();
@@ -34,13 +35,12 @@ class CreateUsersTable extends Migration
                 'ua',
                 'us',
                 'cn',
-            ])->nullable();
+                'unknown',
+            ])->default('unknown');
             $table->string('city')->nullable();
             $table->mediumText('about')->nullable();
             $table->string('skype')->nullable();
             $table->string('telephone')->nullable();
-
-            $table->boolean('show_email')->default(false);
             $table->boolean('is_confirmed')->default(false);
             $table->enum('role', [
                 'user',

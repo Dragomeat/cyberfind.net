@@ -12,32 +12,50 @@
 */
 
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('/home', 'HomeController@index');
 
-Route::get('/auth/login', 'Auth\LoginController@showLoginForm')->name('auth.login');
-Route::post('/auth/login', 'Auth\LoginController@login')->name('auth.login.post');
+Route::get('auth/login', 'Auth\LoginController@showLoginForm')->name('auth.login');
+Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login.post');
 Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
-Route::get('/auth/s/{provider}', 'Auth\SocialController@login')->name('auth.social');
-Route::get('/auth/s/{provider}/callback', 'Auth\SocialController@callback');
+Route::get('auth/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.request');
+Route::post('auth/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.password.email');
+Route::get('auth/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('auth.password.reset');
+Route::post('auth/password/reset', 'Auth\ResetPasswordController@reset')->name('auth.password.reset.action');
+
+Route::get('auth/s/{provider}', 'Auth\SocialController@login')->name('auth.social');
+Route::get('auth/s/{provider}/callback', 'Auth\SocialController@callback');
+
+Route::get('auth/register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
+Route::post('auth/register', 'Auth\RegisterController@register')->name('auth.register.post');
+
+Route::get('auth/confirmation/{token}', 'Auth\ConfirmController@confirm')
+    ->name('auth.confirmation.confirm');
+
 
 Route::resource('profile', 'ProfileController', [
-    'only' => ['show', 'edit', 'update'],
+    'only' => ['show', 'edit', 'update', 'delete'],
 ]);
 
-Route::get('/auth/register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
+Route::resource('news', 'NewsController', [
+    'only' => ['index', 'show'],
+]);
 
-// // Authentication Routes...
-//        $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-//        $this->post('login', 'Auth\LoginController@login');
-//        $this->post('logout', 'Auth\LoginController@logout')->name('logout');
-//
-//        // Registration Routes...
-//        $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//        $this->post('register', 'Auth\RegisterController@register');
-//
-//        // Password Reset Routes...
-//        $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//        $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//        $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-//        $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('search/users/{search}', function (string $search) {
+    return \App\Models\User::search($search)->get();
+})->name('search.index');
+
+Route::get('about', function () {
+    return 'about';
+})->name('about');
+
+Route::get('contacts', function () {
+    return 'contacts';
+})->name('about.contacts');
+
+Route::get('teams/search', 'TeamsController@search')
+    ->name('teams.search');
+
+Route::post('teams/{team}/join', 'TeamsController@join')
+    ->name('teams.join');
+
+Route::resource('teams', 'TeamsController');

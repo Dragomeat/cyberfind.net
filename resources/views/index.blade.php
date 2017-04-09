@@ -3,7 +3,6 @@
 @section('content')
     <div class="b_inb b_inb-main">
         <div class="c_box">
-
             <div class="c_main_top">
                 <div class="c_main_top-btn c_gamebtn">
                     <a href="#" class="c_gamebtn-csgo"></a>

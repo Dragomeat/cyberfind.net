@@ -2,59 +2,61 @@ jQuery(document).ready(function($) {
 
 
 // main: tournament tabs
-    $('ul.c_main_info-tabs__caption').on('click', 'li:not(.active)', function() {
-        $(this)
-            .addClass('active').siblings().removeClass('active')
-            .closest('div.c_main_info-tabs').find('div.c_main_info-tabs__content').removeClass('active').eq($(this).index()).addClass('active');
-    });
+	$('ul.c_main_info-tabs__caption').on('click', 'li:not(.active)', function() {
+		$(this)
+			.addClass('active').siblings().removeClass('active')
+			.closest('div.c_main_info-tabs').find('div.c_main_info-tabs__content').removeClass('active').eq($(this).index()).addClass('active');
+	});
 
 
 // accordion - About page
-    $('.c_about-title').on('click', function(event) {
-        event.preventDefault();
-        var parentAbout = $(this).parent();
-        parentAbout.addClass('active');
-        parentAbout.siblings().removeClass('active');
-    });
+	$('.c_about-title').on('click', function(event) {
+		event.preventDefault();
+		var parentAbout = $(this).parent();
+		parentAbout.addClass('active');
+		parentAbout.siblings().removeClass('active');
+	});
 
 // select styling
-    $('input, select').styler({
-        selectSearch: true
-    });
+	$('input, select').styler({
+		selectSearch: true
+	});
 
+    $('input[type=tel]').mask('+7 (999) 999-99-99');
 
-//
+    $('input.c_age').mask('99-99');
+//  
 // popup
-//
-    $('.overlay, .popup-close').on('click', function(){
-        $('.popup').fadeOut();
-        $('.overlay').fadeOut();
-    });
-    $('.action').on('click', function(){
-        var event = $(this).data('event');
-
-        $('.overlay').fadeIn();
-        $('.popup-' + event).centered_popup();
-        $('.popup-' + event).fadeIn();
-        return false;
-    });
-
+//  
+  $('.overlay, .popup-close').on('click', function(){
+    $('.popup').fadeOut(); 
+    $('.overlay').fadeOut();
+  });
+  $('.action').on('click', function(){
+    var event = $(this).data('event');
+    
+    $('.overlay').fadeIn();
+    $('.popup-' + event).centered_popup(); 
+    $('.popup-' + event).fadeIn(); 
+    return false;
+  });
+  
 // Маска для телефона
-  $("[type=tel]").mask("79999999999");
+//  $("[type=tel]").mask("+7(999) 999-99-99");
 
 
 // Кнопка "Наверх"
-    $(window).scroll(function(){
-        if (jQuery(document).scrollTop() > 100) {
-            jQuery('.intop').fadeIn();
-        } else {
-            jQuery('.intop').fadeOut();
-        }
-    });
-    $('.intop').click(function(){
-        $("html, body").animate({scrollTop: 0}, 600);
-        return false;
-    });
+  $(window).scroll(function(){
+    if (jQuery(document).scrollTop() > 100) {
+      jQuery('.intop').fadeIn();
+    } else {
+      jQuery('.intop').fadeOut();
+    }
+  });
+  $('.intop').click(function(){
+    $("html, body").animate({scrollTop: 0}, 600);
+    return false;
+  });
 
 
 

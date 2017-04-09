@@ -10,14 +10,18 @@ namespace App\Services\Auth;
 
 use App\Models\User;
 use App\Models\UserSocial;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use SocialiteProviders\Manager\Contracts\OAuth2\ProviderInterface;
 
 class SocialService
 {
-    public function createOrGetUser(ProviderInterface $provider, string $providerName)
+    public function createOrGetUser($provider, string $providerName)
     {
+        /**
+         * @var ProviderInterface $provider
+         */
         $socialUser = $provider->user();
 
         $accountData = [
@@ -34,20 +38,16 @@ class SocialService
             return $account->user;
         }
 
-        try {
-            /**
-             * @var User
-             */
-            $user = User::create([
-                'login' => $socialUser->getNickname(),
-                'email' => $socialUser->getEmail(),
-                'password' => bcrypt(
-                    Str::random()
-                ),
-            ]);
-        } catch (QueryException $e) {
-            return null;
-        }
+
+        $user = User::firstOrCreate([
+            'id' => Auth::id(),
+        ], [
+            'login' => $socialUser->getNickname() ?? $socialUser->getName(),
+            'email' => $socialUser->getEmail(),
+            'password' => bcrypt(
+                Str::random()
+            ),
+        ]);
 
         $account->user()
             ->associate($user)

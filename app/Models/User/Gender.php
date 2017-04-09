@@ -14,4 +14,5 @@ final class Gender extends AbstractEnum
 {
     public const MALE = 'male';
     public const FEMALE = 'female';
+    public const UNKNOWN = 'unknown';
 }

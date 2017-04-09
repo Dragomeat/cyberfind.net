@@ -13,6 +13,8 @@ use Service\ImageUploader\Gates\FileSize;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
+use Service\ImageUploader\Resolvers\AvatarResolver;
+use Service\ImageUploader\Resolvers\GravatarResolver;
 
 class UploadAvatarProcess implements ShouldQueue
 {
@@ -37,9 +39,10 @@ class UploadAvatarProcess implements ShouldQueue
     public function handle(ImageManager $manager, Storage $storage, LoggerInterface $logger)
     {
         $accepted = function (string $path) use ($logger) {
-            $this->user->avatar = $path;
-            $this->user->avatar_rendered = true;
-            $this->user->save();
+            $this->user->update([
+                'avatar' => $path,
+                'avatar_rendered' => true
+            ]);
 
             $logger->info('Queue: Update avatar for user '.$this->user->login);
         };

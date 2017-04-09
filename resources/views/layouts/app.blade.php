@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
 
 <header class="b_box header">
     <div class="b_inb">
-        <a href="#" class="h_logo"></a>
+        <a href="{{ route('index') }}" class="h_logo"></a>
         <div class="h_info">
             <div class="h_auth">
                 @if(Auth::check())
@@ -37,18 +37,27 @@
                     <a href="{{ route('auth.logout') }}" onclick="event.preventDefault();
                       document.getElementById('_logout').submit();" class="h_logout" title="Выйти"></a>
                 @else
-                    <a href="#" class="h_steam" title="Войти через Steam"></a>
+                    {{--<a href="#" class="h_steam" title="Войти через Steam"></a>--}}
                     <a href="{{ route('auth.login') }}" class="h_logout h_login" data-event="login" title="Войти"></a>
                 @endif
             </div>
             <nav class="h_nav">
-                <ul>
-                    <li class="current-menu-item"><a href="#">ГЛАВНАЯ</a></li>
-                    <li><a href="#">ПОИСК ИГРОКА</a></li>
-                    <li><a href="#">ПОИСК КОМАНДЫ</a></li>
-                    <li><a href="#">О НАС</a></li>
-                    <li><a href="#">ПАРТНЕРЫ</a></li>
-                    <li><a href="#">КОНТАКТЫ</a></li>
+                <ul> {{--TODO--}}
+                    <li>
+                        <a href="{{ route('index') }}">Главная</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('news.index') }}">Новости</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('teams.index') }}">Команды</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('about') }}">О нас</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('about.contacts') }}">Контакты</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -56,6 +65,14 @@
 </header><!-- .header-->
 
 <main class="b_box content">
+    @if (session('status'))
+        <div class="c_reg-item b_inb">
+            <div class="c_reg-item__box" style="float: none">
+                <input type="text"  style="border-color: green; color: green;" value="{{ session('status') }}" readonly/>
+            </div>
+        </div>
+    @endif
+
     @yield('content')
 </main><!-- .content -->
 
@@ -77,45 +94,6 @@
 </footer><!-- .footer -->
 
 <div class="intop">Наверх</div>
-
-<div class="popup-login popup">
-    <div class="popup-close">x</div>
-    <div class="popup-head">
-        <div class="popup-title">Вход</div>
-    </div>
-    <div class="popup-body">
-        <form action="{{ route('auth.login.post') }}" method='post' class="form">
-            <div class='form-label'>
-                <label>E-mail</label>
-                <input type="email" name='email'/>
-            </div>
-            <div class='form-label'>
-                <label>Пароль</label>
-                <input type="password" name="password"/>
-                <div class="popup-forgetpass"><a href="#">Забыли пароль?</a></div>
-            </div>
-            <div class="form-label">
-                <div class="g-recaptcha" data-theme="dark"
-                     data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
-                {!! csrf_field() !!}
-            </div>
-            <input type="submit" value='ВОЙТИ И ИГРАТЬ'>
-        </form>
-    </div>
-    <div class="popup-bottom">
-        <a href="#" class="popup-bottom-notakk">Нет аккаунта?</a>
-        <a href="#" class="popup-bottom-reg">регистрация сейчас ></a>
-    </div>
-</div>
-
-<div class="popup-thy popup">
-    <div class="popup-close"></div>
-    <div class="popup-head">
-        <div class="popup-title">Ваша заявка успешно отправлена.</div>
-    </div>
-</div>
-
-<div class="overlay"></div>
 
 <!-- Scripts -->
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

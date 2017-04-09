@@ -7,10 +7,10 @@ Author URI: http://aleksandrlao.ru
 
 @font-face {
 	font-family: 'Calibri';
-	src: url('../fonts/Calibri/Calibri.eot');
-	src: local('O'), url('../fonts/Calibri/Calibri.woff') format('woff'),
-	url('../fonts/Calibri/Calibri.ttf') format('truetype'),
-	url('../fonts/Calibri/Calibri.svg') format('svg');
+	src: url('/fonts/Calibri.eot');
+	src: local('O'), url('/fonts/Calibri.woff') format('woff'),
+	url('/fonts/Calibri.ttf') format('truetype'),
+	url('/fonts/Calibri.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -32,7 +32,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 body {
 	font: 16px/24px 'Calibri', Arial, sans-serif;
 	color: #FFF;
-	background: url(../images/bg.jpg) center top repeat;
+	background: url(/images/bg.jpg) center top repeat;
 	-webkit-background-size: cover;
 	     -o-background-size: cover;
 	        background-size: cover;
@@ -70,7 +70,7 @@ input, textarea {
 -----------------------------------------------------------------------------*/
 .header {
 	padding: 33px 0 27px;
-	background: url(../images/bg-header.png) repeat;
+	background: url(/images/bg-header.png) repeat;
 	margin-bottom: 45px;
 }
 .h_logo {
@@ -78,7 +78,7 @@ input, textarea {
 	display: block;
 	width: 194px;
 	height: 28px;
-	background: url(../images/bg-logo.png) no-repeat;
+	background: url(/images/bg-logo.png) no-repeat;
 	-webkit-background-size: cover;
 	     -o-background-size: cover;
 	        background-size: cover;
@@ -104,27 +104,27 @@ input, textarea {
 	float: left;
 	width: 125px;
 	height: 56px;
-	background: url(../images/bg-steam.png) no-repeat;
+	background: url(/images/bg-steam.png) no-repeat;
 }
 .h_mail {
 	float: left;
 	width: 29px;
 	height: 19px;
-	background: url(../images/bg-head-mail.png) no-repeat;
+	background: url(/images/bg-head-mail.png) no-repeat;
 	margin: 15px 0 0 15px;
 }
 .h_profile {
 	float: left;
 	width: 25px;
 	height: 22px;
-	background: url(../images/bg-head-profile.png) no-repeat;
+	background: url(/images/bg-head-profile.png) no-repeat;
 	margin: 14px 0 0 14px;
 }
 .h_logout {
 	float: right;
 	width: 21px;
 	height: 21px;
-	background: url(../images/bg-head-logout.png) no-repeat;
+	background: url(/images/bg-head-logout.png) no-repeat;
 	margin: 15px 0 0 15px;
 }
 
@@ -236,6 +236,10 @@ input, textarea {
 	color: #B2B2B2;
 	text-decoration: none;
 }
+.c_breadcrumbs a::after {
+	content: ' / ';
+}
+
 .c_breadcrumbs span.current {
 	color: #FFF;
 }
@@ -262,7 +266,7 @@ input, textarea {
 	right: 0;
 	width: 21px;
 	height: 21px;
-	background: url(../images/bg-liked-search.jpg) left top no-repeat;
+	background: url(/images/bg-liked-search.jpg) left top no-repeat;
 }
 
 
@@ -279,13 +283,13 @@ input, textarea {
 	        background-size: contain;
 }
 .c_gamebtn-csgo {
-	background-image: url(../images/bg-main-csgo.png);
+	background-image: url(/images/bg-main-csgo.png);
 }
 .c_gamebtn-lol {
-	background-image: url(../images/bg-main-lol.png);
+	background-image: url(/images/bg-main-lol.png);
 }
 .c_gamebtn-dota2 {
-	background-image: url(../images/bg-main-dota2.png);
+	background-image: url(/images/bg-main-dota2.png);
 }
 
 
@@ -359,13 +363,13 @@ input, textarea {
 	background-repeat: no-repeat;
 }
 .c_main_nav-news {
-	background-image: url(../images/bg-main-news.png);
+	background-image: url(/images/bg-main-news.png);
 }
 .c_main_nav-search {
-	background-image: url(../images/bg-main-search.png);
+	background-image: url(/images/bg-main-search.png);
 }
 .c_main_nav-tournament {
-	background-image: url(../images/bg-main-tournament.png);
+	background-image: url(/images/bg-main-tournament.png);
 }
 .c_main_nav-title {
 	color: #FFF;
@@ -582,11 +586,11 @@ input, textarea {
 .c_main_info-newscomm {
 	margin-left: 0;
 	padding-left: 22px;
-	background: url(../images/bg-comment.png) left center no-repeat;
+	background: url(/images/bg-comment.png) left center no-repeat;
 }
 .c_main_info-newslike {
 	padding: 0 7px 0 30px;
-	background: #373737 url(../images/bg-like.png) 10px center no-repeat;
+	background: #373737 url(/images/bg-like.png) 10px center no-repeat;
 	-webkit-filter: grayscale(1);
     filter: gray;
     filter: grayscale(1);
@@ -604,7 +608,7 @@ input, textarea {
 }
 .c_main_info-newsdislike {
 	padding: 0 7px 0 30px;
-	background: #373737 url(../images/bg-dislike.png) 10px center no-repeat;
+	background: #373737 url(/images/bg-dislike.png) 10px center no-repeat;
 	-webkit-filter: grayscale(1);
     filter: gray;
     filter: grayscale(1);
@@ -623,7 +627,7 @@ input, textarea {
 .c_main_info-newsmore {
 	width: 21px;
 	height: 24px;
-	background: url(../images/bg-main-more.png) center no-repeat;
+	background: url(/images/bg-main-more.png) center no-repeat;
 }
 
 .c_main_info-tourn .c_main_info-tabs__caption {
@@ -754,7 +758,7 @@ input, textarea {
 	display: block;
 	width: 134px;
 	height: 134px;
-	background: #1F1F1F url(../images/bg-teamspeak.png) center no-repeat;
+	background: #1F1F1F url(/images/bg-teamspeak.png) center no-repeat;
 	border: 1px solid #262626;
 	-webkit-border-radius: 15px;
 	        border-radius: 15px;
@@ -775,12 +779,12 @@ input, textarea {
 	font-size: 14px;
 	line-height: 20px;
 	padding: 10px 0 10px 52px;
-	background: url(../images/bg-rss.png) 20px center no-repeat;
+	background: url(/images/bg-rss.png) 20px center no-repeat;
 	text-decoration: none;
 	overflow: hidden;
 }
 .c_main_teamspeak-item a:hover {
-	background-image: url(../images/bg-rss-active.png);
+	background-image: url(/images/bg-rss-active.png);
 }
 .c_main_teamspeak-title {
 	float: left;
@@ -817,7 +821,7 @@ input, textarea {
 	width: 100%;
 	min-height: 456px;
 	border: 1px solid #030303;
-	background: url(../images/bg-about-top.jpg) center no-repeat;
+	background: url(/images/bg-about-top.jpg) center no-repeat;
 	-webkit-background-size: cover;
 	     -o-background-size: cover;
 	        background-size: cover;
@@ -1011,7 +1015,7 @@ h1 {
 	color: #FFF;
 	font-size: 12px;
 	line-height: 15px;
-	background: url(../images/bg-contact-refresh.png) no-repeat;
+	background: url(/images/bg-contact-refresh.png) no-repeat;
 	margin: 6px 0 0 14px;
 	cursor: pointer;
 }
@@ -1053,7 +1057,7 @@ h1 {
 	font-size: 19px;
 	line-height: 19px;
 	text-decoration: none;
-	background: url(../images/bg-contact-list-mail.png) left center no-repeat;
+	background: url(/images/bg-contact-list-mail.png) left center no-repeat;
 }
 
 
@@ -1107,7 +1111,7 @@ h1 {
 	color: #FFF;
 	font-size: 12px;
 	line-height: 15px;
-	background: url(../images/bg-contact-refresh.png) no-repeat;
+	background: url(/images/bg-contact-refresh.png) no-repeat;
 	margin: 6px 0 0 14px;
 	cursor: pointer;
 }
@@ -1140,15 +1144,6 @@ h1 {
 	font-size: 12px;
 	font-style: italic;
 	line-height: 18px;
-}
-.c_reg-socials {
-	float: left;
-	width: 100%;
-}
-
-.c_reg-socials .f_soc {
-	float: left;
-    text-align: left;
 }
 
 
@@ -1219,7 +1214,7 @@ h1 {
 	background-color: #FF8000;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-image: url(../images/bg-search.png);
+	background-image: url(/images/bg-search.png);
 }
 .c_search-filter__box input[type="submit"]:hover {
 	background-color: #FF8000;
@@ -1258,7 +1253,7 @@ h1 {
 	display: inline-block;
 	width: 21px;
 	height: 21px;
-	background: url(../images/bg-liked-search.jpg) center top no-repeat;
+	background: url(/images/bg-liked-search.jpg) center top no-repeat;
 }
 .c_search-line__liked.active {
 	background-position: center bottom;
@@ -1275,10 +1270,10 @@ h1 {
 	width: 28px;
 	height: 35px;
 	margin: 0 2px 4px;
-	background: url(../images/bg-find-players.png) no-repeat;
+	background: url(/images/bg-find-players.png) no-repeat;
 }
 .c_search-line__num-players span.c_search-line__num-active {
-	background: url(../images/bg-find-players.png) left bottom no-repeat;
+	background: url(/images/bg-find-players.png) left bottom no-repeat;
 }
 
 .c_search-info {
@@ -1403,10 +1398,10 @@ h1 {
 	line-height: 27px;
 }
 .c_search-char__like {
-	background-image: url(../images/bg-like.png);
+	background-image: url(/images/bg-like.png);
 }
 .c_search-char__dislike {
-	background-image: url(../images/bg-dislike.png);
+	background-image: url(/images/bg-dislike.png);
 }
 
 .c_search-char__topbtn {
@@ -1661,7 +1656,7 @@ a.c_search-char__pers-box:hover {
 	margin-left: 3px;
 	background-color: #3E3E3E;
 	background-repeat: no-repeat;
-	background-image: url(../images/bg-find-social.png);
+	background-image: url(/images/bg-find-social.png);
 }
 .c_search-char__social-link a.vk {background-position: 9px 6px;}
 .c_search-char__social-link a.fb {background-position: -20px 6px;}
@@ -1750,17 +1745,17 @@ a.c_search-char__pers-box:hover {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.c_search-rank-start {background-image: url(../images/bg-rang.png);}
-.c_search-rank-noob {background-image: url(../images/bg-rang.png);}
-.c_search-rank-master {background-image: url(../images/bg-rang.png);}
-.c_search-rank-proff {background-image: url(../images/bg-rang.png);}
-.c_search-rank-stars {background-image: url(../images/bg-rang.png);}
+.c_search-rank-start {background-image: url(/images/bg-rang.png);}
+.c_search-rank-noob {background-image: url(/images/bg-rang.png);}
+.c_search-rank-master {background-image: url(/images/bg-rang.png);}
+.c_search-rank-proff {background-image: url(/images/bg-rang.png);}
+.c_search-rank-stars {background-image: url(/images/bg-rang.png);}
 
 
-.c_search-char__doplist-beg {background-image: url(../images/bg-progress1.jpg);}
-.c_search-char__doplist-sniper {background-image: url(../images/bg-progress-sniper.jpg);}
+.c_search-char__doplist-beg {background-image: url(/images/bg-progress1.jpg);}
+.c_search-char__doplist-sniper {background-image: url(/images/bg-progress-sniper.jpg);}
 
-.c_search-char__doplist-dota-support {background-image: url(../images/bg-dota-role-support.png);}
+.c_search-char__doplist-dota-support {background-image: url(/images/bg-dota-role-support.png);}
 
 .c_search-char__dopcheck {
 	float: right;
@@ -1777,7 +1772,7 @@ a.c_search-char__pers-box:hover {
 	width: 32px;
 	height: 30px;
 	background-repeat: no-repeat;
-	background-image: url(../images/bg-search-dopcheck.png);
+	background-image: url(/images/bg-search-dopcheck.png);
 }
 .c_search-char__dopcheck-talk {background-position: 0 0;}
 .c_search-char__dopcheck-komp {background-position: 0 -41px;}
@@ -1910,31 +1905,31 @@ a.c_search-char__pers-box:hover {
     filter: grayscale(0);
 }
 .c_search-char__map-mirage {
-	background-image: url(../images/bg-map-mirage.png);
+	background-image: url(/images/bg-map-mirage.png);
 }
 .c_search-char__map-nuke {
 	width: 82px;
 	height: 82px;
-	background-image: url(../images/bg-map-nuke.png);
+	background-image: url(/images/bg-map-nuke.png);
 }
 .c_search-char__map-train {
-	background-image: url(../images/bg-map-train.png);
+	background-image: url(/images/bg-map-train.png);
 }
 .c_search-char__map-dust2 {
-	background-image: url(../images/bg-map-dust2.png);
+	background-image: url(/images/bg-map-dust2.png);
 }
 .c_search-char__map-cobble {
-	background-image: url(../images/bg-map-cobble.png);
+	background-image: url(/images/bg-map-cobble.png);
 }
 .c_search-char__map-overpass {
-	background-image: url(../images/bg-map-overpass.png);
+	background-image: url(/images/bg-map-overpass.png);
 }
 .c_search-char__map-cache {
 	width: 96px;
-	background-image: url(../images/bg-map-cache.png);
+	background-image: url(/images/bg-map-cache.png);
 }
 .c_search-char__map-inferno {
-	background-image: url(../images/bg-map-inferno.png);
+	background-image: url(/images/bg-map-inferno.png);
 }
 
 .c_search-char__dota-level {
@@ -1969,7 +1964,7 @@ a.c_search-char__pers-box:hover {
 .c_search-char__contmap {
 	width: 160px;
 	min-height: 120px;
-	background: url(../images/bg-contact-map.png) center 40px no-repeat;
+	background: url(/images/bg-contact-map.png) center 40px no-repeat;
 	position: relative;
 }
 .c_search-char__contmap-adr {
@@ -2107,7 +2102,7 @@ a.c_search-char__pers-box:hover {
 .c_search-load {
 	width: 81px;
 	height: 32px;
-	background: url(../images/bg-btn-load.jpg) no-repeat;
+	background: url(/images/bg-btn-load.jpg) no-repeat;
 	margin: 36px auto;
 	-moz-box-shadow: 0 2px 9px rgba(0,0,0,.33);
 	-webkit-box-shadow: 0 2px 9px rgba(0,0,0,.33);
@@ -2229,6 +2224,7 @@ a.c_search-char__pers-box:hover {
 	height: 34px;
 	margin-right: 35px;
 	position: relative;
+	overflow: hidden;
 }
 .c_kabinet-profile__select {
 	overflow: visible;
@@ -2241,7 +2237,7 @@ a.c_search-char__pers-box:hover {
 }
 .c_kabinet-profile__place input, .c_kabinet-profile__select .jq-selectbox__select, .c_kabinet-profile__textarea textarea {
 	float: left;
-	width: calc(100% - 72px) !important;
+	width: calc(100% - 72px);
 	height: 34px;
 	background-color: #1f1f1f;
 	border: 1px solid #313131;
@@ -2334,11 +2330,11 @@ input.value-error {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.c_kabinet-soc__vk::before {background-image: url(../images/bg-profile-vk.png);}
-.c_kabinet-soc__twich::before {background-image: url(../images/bg-profile-twich.png);}
-.c_kabinet-soc__yt::before {background-image: url(../images/bg-profile-yt.png);}
-.c_kabinet-soc__fb::before {background-image: url(../images/bg-profile-fb.png);}
-.c_kabinet-soc__tw::before {background-image: url(../images/bg-profile-tw.png);}
+.c_kabinet-soc__vk::before {background-image: url(/images/bg-profile-vk.png);}
+.c_kabinet-soc__twich::before {background-image: url(/images/bg-profile-twich.png);}
+.c_kabinet-soc__yt::before {background-image: url(/images/bg-profile-yt.png);}
+.c_kabinet-soc__fb::before {background-image: url(/images/bg-profile-fb.png);}
+.c_kabinet-soc__tw::before {background-image: url(/images/bg-profile-tw.png);}
 
 .c_kabinet-soc__link::before {
 	display: none;
@@ -2366,47 +2362,6 @@ input.value-error {
 .c_kabinet-bottom {
 	overflow: hidden;
 }
-
-.c_kabinet-edit {
-	float: right;
-	display: block;
-	width: 180px;
-	height: 34px;
-	padding: 2px 7px;
-	color: #FF8000;
-	background-color: #1F1F1F;
-	border: 1px solid #313131;
-	line-height: 30px;
-	cursor: pointer;
-	text-decoration: none;
-}
-
-.c_kabinet-edit:hover {
-	background-color: #313131;
-}
-
-.c_kabinet-back {
-	font-family: 'Calibri', Arial, sans-serif;
-	font-size: 13px;
-	float: left;
-	display: block;
-	width: 180px;
-	height: 34px;
-	margin-left: 10px;
-	padding: 2px 7px;
-	color: #FF8000;
-	text-align: center;
-	background-color: #1F1F1F;
-	border: 1px solid #313131;
-	line-height: 30px;
-	cursor: pointer;
-	text-decoration: none;
-}
-
-.c_kabinet-back:hover {
-	background-color: #313131;
-}
-
 .c_kabinet-game {
 	float: left;
 	width: calc(50% - 17px);
@@ -2433,10 +2388,11 @@ input.value-error {
 
 
 .c_kabinet-submit {
-	float: left;
+	float: right;
 	display: block;
 	width: 180px;
 	height: 34px;
+	margin: 120px 10px 70px;
 	color: #FF8000;
 	background-color: #1F1F1F;
 	border: 1px solid #313131;
@@ -2501,7 +2457,7 @@ input.value-error {
 	vertical-align: top;
 	width: 21px;
 	height: 21px;
-	background: url(../images/bg-liked-search.jpg) center top no-repeat;
+	background: url(/images/bg-liked-search.jpg) center top no-repeat;
 }
 .c_tourn-line__rate span.rate-active {
 	background-position: 0 -21px;
@@ -2635,7 +2591,7 @@ input.value-error {
 	right: 24px;
 	width: 20px;
 	height: 21px;
-	background: url(../images/bg-news-big-arrow.png) no-repeat;
+	background: url(/images/bg-news-big-arrow.png) no-repeat;
 	-webkit-filter: grayscale(1);
 	filter: gray;
 	filter: grayscale(1);
@@ -2731,10 +2687,10 @@ input.value-error {
 	background-color: #0c0c0c;
 }
 .c_news-list__like {
-	background-image: url(../images/bg-like.png);
+	background-image: url(/images/bg-like.png);
 }
 .c_news-list__dislike {
-	background-image: url(../images/bg-dislike.png);
+	background-image: url(/images/bg-dislike.png);
 }
 
 .c_news-pagination::after {
@@ -2757,7 +2713,7 @@ input.value-error {
     padding-right: 52px;
     background-position: right center;
     background-repeat: no-repeat;
-    background-image: url(../images/bg-allnews-btn.png);
+    background-image: url(/images/bg-allnews-btn.png);
     color: #FFF;
     font-size: 14px;
     line-height: 32px;
@@ -2765,7 +2721,7 @@ input.value-error {
 }
 .c_news-prev a {
 	background-position: left center;
-	background-image: url(../images/bg-news-prev.png);
+	background-image: url(/images/bg-news-prev.png);
 	padding-right: 0;
 	padding-left: 52px;
 }
@@ -2837,7 +2793,7 @@ input.value-error {
 	padding-right: 52px;
 	background-position: right center;
 	background-repeat: no-repeat;
-	background-image: url(../images/bg-allnews-btn.png);
+	background-image: url(/images/bg-allnews-btn.png);
 	color: #FFF;
 	font-size: 14px;
 	line-height: 32px;
@@ -2854,7 +2810,7 @@ input.value-error {
 	min-height: 90px;
 	padding: 33px 24px;
 	color: #FFF;
-	background: #1f1f1f url(../images/bg-footer.jpg) repeat;
+	background: #1f1f1f url(/images/bg-footer.jpg) repeat;
 }
 .f_copy {
 	float: left;
@@ -2887,7 +2843,7 @@ input.value-error {
 	display: block;
 	width: 31px;
 	height: 31px;
-	background-image: url(../images/bg-social.png);
+	background-image: url(/images/bg-social.png);
 	background-repeat: no-repeat;
 }
 .f_soc li.gp a {background-position: 0 0;}
@@ -2915,7 +2871,7 @@ input.value-error {
 	width: 75px;
 	height: 14px;
 	text-align: right;
-	background: url(../images/bg-intop.png) left center no-repeat;
+	background: url(/images/bg-intop.png) left center no-repeat;
 	color: #FFF;
 	font-size: 14px;
 	line-height: 14px;
@@ -2943,7 +2899,7 @@ input.value-error {
 	width: 100%;
 	max-width: 450px;
 	padding: 25px;
-	background: #171717 url(../images/bg-popup.png) center no-repeat;
+	background: #171717 url(/images/bg-popup.png) center no-repeat;
 	z-index: 9999;
 }
 .popup-close {
@@ -3054,5 +3010,10 @@ input.value-error {
     left: 50%;
     margin-top: -215px;
     margin-left: -225px;
+}
+
+.c_multiple {
+	outline: none;
+	box-shadow: none;
 }
 

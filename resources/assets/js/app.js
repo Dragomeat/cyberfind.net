@@ -13,8 +13,25 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Example.vue'));
+//
+// const app = new Vue({
+//     el: '#app'
+// });
 
-const app = new Vue({
-    el: '#app'
+$('#indexTabs a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+
+$('.carousel').carousel();
+
+$('[data-toggle=popover]').popover({
+    html: true,
+    content: function() {
+        var _source = $('#' +$(this).attr('data-source'));
+        var content = _source.html();
+
+        return content;
+    }
 });

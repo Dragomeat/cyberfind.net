@@ -16,4 +16,5 @@ final class Country extends AbstractEnum
     public const UA = 'ua';
     public const US = 'us';
     public const CN = 'cn';
+    public const UNKNOWN = 'unknown';
 }
