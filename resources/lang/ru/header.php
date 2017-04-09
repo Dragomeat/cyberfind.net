@@ -8,6 +8,6 @@ return [
         'search_team' => 'Поиск команды',
         'about' => 'О нас',
         'contacts' => 'Контакты',
-        'login' => 'Вход'
-    ]
+        'login' => 'Вход',
+    ],
 ];

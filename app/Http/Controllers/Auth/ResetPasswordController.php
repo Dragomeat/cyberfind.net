@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\View\View;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class ResetPasswordController extends Controller
 {
@@ -48,7 +48,7 @@ class ResetPasswordController extends Controller
     {
         return view('auth.passwords.reset')->with([
                 'token' => $token,
-                'email' => $request->get('email')
+                'email' => $request->get('email'),
             ]
         );
     }

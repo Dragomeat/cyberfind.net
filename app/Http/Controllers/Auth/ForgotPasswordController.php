@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\RestoreRequest;
 use App\Models\User;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\Auth\RestoreRequest;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
@@ -45,7 +45,6 @@ class ForgotPasswordController extends Controller
      * @param RestoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-
     public function sendResetLinkEmail(RestoreRequest $request)
     {
         User::whereEmail($request->get('email'))

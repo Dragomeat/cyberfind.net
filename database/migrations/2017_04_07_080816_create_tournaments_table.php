@@ -21,7 +21,7 @@ class CreateTournamentsTable extends Migration
             $table->json('map')->nullable();
             $table->integer('max_teams')
                 ->default(256);
-            /**
+            /*
              * 'mirage',
              * 'nuke',
              * 'train',

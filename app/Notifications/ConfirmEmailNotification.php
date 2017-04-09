@@ -5,9 +5,8 @@ namespace App\Notifications;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class ConfirmEmailNotification extends Notification
 {
@@ -28,7 +27,6 @@ class ConfirmEmailNotification extends Notification
      */
     public function __construct(User $user, JWTInterface $jwt)
     {
-
         $this->user = $user;
         $this->jwt = $jwt;
     }
@@ -53,7 +51,7 @@ class ConfirmEmailNotification extends Notification
     public function toMail($notifiable)
     {
         $token = $this->jwt->encode([
-            'email' => $this->user->email
+            'email' => $this->user->email,
         ]);
 
         $action = route('auth.confirmation.confirm', [

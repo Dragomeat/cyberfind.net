@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 class ConfirmController extends Controller
@@ -20,7 +19,7 @@ class ConfirmController extends Controller
             ->firstOrFail();
 
         $user->update([
-            'is_confirmed' => true
+            'is_confirmed' => true,
         ]);
 
         return redirect(

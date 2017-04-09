@@ -3,17 +3,17 @@
 return [
     'breadcrumbs' => [
         'login' => 'Вход',
-        'registration' => 'Регистрация'
+        'registration' => 'Регистрация',
     ],
 
     'login' => [
         'restore' => 'Забыли пароль?',
         'submit' => 'Вход',
-        'registration' => 'Регистрация'
+        'registration' => 'Регистрация',
     ],
 
     'registration' => [
-        'submit' => 'Зарегестрироваться'
+        'submit' => 'Зарегестрироваться',
     ],
 
     'fields' => [

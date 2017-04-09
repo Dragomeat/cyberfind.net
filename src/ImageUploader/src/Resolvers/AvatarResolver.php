@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: norton
  * Date: 04.04.17
- * Time: 13:56
+ * Time: 13:56.
  */
 
 namespace Service\ImageUploader\Resolvers;

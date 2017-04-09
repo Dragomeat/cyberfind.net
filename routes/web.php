@@ -31,7 +31,6 @@ Route::post('auth/register', 'Auth\RegisterController@register')->name('auth.reg
 Route::get('auth/confirmation/{token}', 'Auth\ConfirmController@confirm')
     ->name('auth.confirmation.confirm');
 
-
 Route::resource('profile', 'ProfileController', [
     'only' => ['show', 'edit', 'update', 'delete'],
 ]);

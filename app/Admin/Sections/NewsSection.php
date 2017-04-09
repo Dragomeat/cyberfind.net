@@ -12,10 +12,9 @@ use AdminForm;
 use AdminColumn;
 use AdminDisplay;
 use App\Models\News;
-use AdminFormElement;
 use App\Models\Tags;
+use AdminFormElement;
 use SleepingOwl\Admin\Section;
-use SleepingOwl\Admin\Form\FormElements;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Contracts\Form as FormInterface;
 use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
@@ -91,7 +90,7 @@ class NewsSection extends Section implements Initializable
         return AdminForm::panel()->addBody(
             AdminFormElement::text('title', 'Title')->required(),
             AdminFormElement::hidden('user_id')->mutateValue(function () {
-                 return \Auth::id();
+                return \Auth::id();
             }),
             AdminFormElement::hidden('status')->mutateValue(function () {
                 return 'published';

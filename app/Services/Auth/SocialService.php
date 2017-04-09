@@ -10,9 +10,8 @@ namespace App\Services\Auth;
 
 use App\Models\User;
 use App\Models\UserSocial;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use SocialiteProviders\Manager\Contracts\OAuth2\ProviderInterface;
 
 class SocialService
@@ -20,7 +19,7 @@ class SocialService
     public function createOrGetUser($provider, string $providerName)
     {
         /**
-         * @var ProviderInterface $provider
+         * @var ProviderInterface
          */
         $socialUser = $provider->user();
 
@@ -37,7 +36,6 @@ class SocialService
         if (!is_null($account->user)) {
             return $account->user;
         }
-
 
         $user = User::firstOrCreate([
             'id' => Auth::id(),

@@ -3,8 +3,8 @@
 namespace App\Models\User;
 
 use App\Models\User;
-use App\Notifications\ConfirmEmailNotification;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
+use App\Notifications\ConfirmEmailNotification;
 
 class ConfirmationObserver
 {
@@ -15,7 +15,7 @@ class ConfirmationObserver
 
     public function created(User $user)
     {
-        if (! $user->is_confirmed) {
+        if (!$user->is_confirmed) {
             $confirmation = new ConfirmEmailNotification($user, $this->jwt);
             $user->notify($confirmation);
         }

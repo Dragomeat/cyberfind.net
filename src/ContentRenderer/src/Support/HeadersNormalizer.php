@@ -43,7 +43,7 @@ trait HeadersNormalizer
                 $level += $delta;
                 $level = min($this->minHeaderLevel, max($this->maxHeaderLevel, $level));
 
-                return str_repeat('#', $level) . ' ' . $title;
+                return str_repeat('#', $level).' '.$title;
             }, $body);
         };
     }

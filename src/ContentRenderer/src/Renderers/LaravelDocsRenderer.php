@@ -61,7 +61,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
     private function removeLeadingNavigation(): \Closure
     {
         return function (string $body) {
-            /**
+            /*
              * TODO This expression are vulnerable: ReDoS-based exploit. Probably we can improve and fix it?
              * @see https://en.wikipedia.org/wiki/ReDoS
              */
@@ -121,7 +121,7 @@ class LaravelDocsRenderer extends MarkdownRenderer
                     ->map(function (string $line) {
                         $line = trim($line);
 
-                        return Str::startsWith($line, '- ') ? $line : '- ' . $line;
+                        return Str::startsWith($line, '- ') ? $line : '- '.$line;
                     })
                     ->implode("\n");
 

@@ -38,7 +38,7 @@ return [
     'include_helpers' => true,
 
     'helper_files' => [
-        base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
+        base_path().'/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
     ],
 
     /*
@@ -124,8 +124,8 @@ return [
     */
     'custom_db_types' => [
         'mysql' => [
-            'json' => 'json_array'
-        ]
+            'json' => 'json_array',
+        ],
     ],
 
     /*

@@ -12,7 +12,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
     protected $sections = [
         \App\Models\User::class => \App\Admin\Sections\UsersSection::class,
         \App\Models\News::class => \App\Admin\Sections\NewsSection::class,
-        \App\Models\Tags::class => \App\Admin\Sections\TagsSection::class
+        \App\Models\Tags::class => \App\Admin\Sections\TagsSection::class,
     ];
 
     /**
