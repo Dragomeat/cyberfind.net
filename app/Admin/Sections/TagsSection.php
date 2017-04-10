@@ -15,8 +15,7 @@ use SleepingOwl\Admin\Contracts\Form as FormInterface;
 use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
 
 /**
- * Class TagsSection
- * @package App\Admin\Sections
+ * Class TagsSection.
  */
 class TagsSection extends Section implements Initializable
 {

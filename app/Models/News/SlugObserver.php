@@ -8,8 +8,7 @@ use App\Models\News;
 use Illuminate\Support\Str;
 
 /**
- * Class SlugObserver
- * @package App\Models\News
+ * Class SlugObserver.
  */
 class SlugObserver
 {

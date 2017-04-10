@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Two\ProviderInterface;
 
 /**
- * Class SocialService
- * @package App\Services\Auth
+ * Class SocialService.
  */
 class SocialService
 {

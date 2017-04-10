@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Models\User;
 
 /**
- * Class GravatarSupportable
- * @package App\Models\User
+ * Class GravatarSupportable.
  */
 trait GravatarSupportable
 {
