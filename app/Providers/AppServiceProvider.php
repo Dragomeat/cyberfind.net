@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Barryvdh\Debugbar\ServiceProvider as DebugbarProvider;
+use Sentry\SentryLaravel\SentryLaravelServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->isLocal()) {
             $this->app->register(IdeHelperServiceProvider::class);
             $this->app->register(DebugbarProvider::class);
+        } else {
+            $this->app->register(SentryLaravelServiceProvider::class);
         }
     }
 }
