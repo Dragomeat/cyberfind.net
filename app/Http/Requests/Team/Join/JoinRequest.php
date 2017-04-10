@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+declare(strict_types=1);
+
+namespace App\Http\Requests\Team\Join;
 
 use App\Models\Team\Roles;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class JoinTeamRequest extends FormRequest
+class JoinRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +16,14 @@ class Team extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'age_min', 'age_max', 'city', 'goal', 'goal_text', 'join_additional', 'contacts',
+        'title',
+        'age_min',
+        'age_max',
+        'city',
+        'goal',
+        'goal_text',
+        'join_additional',
+        'contacts',
     ];
 
     /**
@@ -35,6 +45,26 @@ class Team extends Model
         return $this->belongsToMany(User::class)->withPivot(['role', 'status']);
     }
 
+    /**
+     * @return Collection
+     */
+    public function getPendingUsers(): Collection
+    {
+        return $this->getUsersWhereStatus(['pending']);
+    }
+
+    /**
+     * @param int $id
+     * @param array $status
+     * @return User|null
+     */
+    public function findUserWhereStatus(int $id, array $status = ['accepted']): ?User
+    {
+        return $this->getUsersWhereStatus($status)
+            ->where('id', $id)
+            ->first();
+    }
+
     public function maps()
     {
         return $this->hasMany(Map::class);
@@ -47,14 +77,12 @@ class Team extends Model
 
     public function checkJoinUser($id)
     {
-        return (bool) $this->users
-            ->where('id', $id)
-            ->count();
+        return (bool)$this->findUserWhereStatus($id);
     }
 
     public function getLinksAttribute()
     {
-        if (is_null($contacts = $this->attributes['contacts'])) {
+        if (null === $contacts = $this->attributes['contacts']) {
             return null;
         }
 
@@ -63,22 +91,36 @@ class Team extends Model
 
     public function getSocialsAttribute()
     {
-        if (is_null($contacts = $this->attributes['contacts'])) {
+        if (null === $contacts = $this->attributes['contacts']) {
             return null;
         }
 
         return json_decode($contacts)->socials;
     }
 
-    public function getCommanderAttribute()
+    public function getCommanderAttribute(): User
     {
         return $this->getUsersWhereRole('commander')->first();
     }
 
-    public function getUsersWhereRole(string $role, string $status = 'accepted')
+    /**
+     * @param string $role
+     * @param array $status
+     * @return Collection
+     */
+    public function getUsersWhereRole(string $role, array $status = ['accepted']): Collection
+    {
+        return $this->getUsersWhereStatus($status)
+            ->where('pivot.role', $role);
+    }
+
+    /**
+     * @param array $status
+     * @return Collection
+     */
+    public function getUsersWhereStatus(array $status = ['accepted']): Collection
     {
         return $this->users
-            ->where('pivot.role', $role)
-            ->where('pivot.status', $status);
+            ->whereInStrict('pivot.status', $status);
     }
 }

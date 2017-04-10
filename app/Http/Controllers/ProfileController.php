@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\Profile\UpdateRequest;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class ProfileController extends Controller
@@ -54,12 +54,12 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param UpdateProfileRequest $request *
+     * @param UpdateRequest $request
      * @param Filesystem $fs
      * @param $id
      * @return RedirectResponse
      */
-    public function update(UpdateProfileRequest $request, Filesystem $fs, $id)
+    public function update(UpdateRequest $request, Filesystem $fs, $id)
     {
         /**
          * @var User

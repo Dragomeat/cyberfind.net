@@ -23,12 +23,6 @@
                                 </div>
                             @endcan
 
-                            @can('accept', $team)
-                                <div class="c_search-char__btn">
-                                    <a href="{{ route('teams.requests', $team->id) }}">Просмотреть заявки</a>
-                                </div>
-                            @endcan
-
                             @if($teamspeak)
                                 <div class="c_search-char__btn">
                                     <a href="ts3server://{{ $teamspeak }}">Подключится
@@ -140,6 +134,22 @@
                                             </div>
                                             <div class="c_search-char__teamitem-years">{{ $user->age ?? 'Не указан' }}</div>
                                             <div class="c_search-char__teamitem-city">{{ $user->city ?? 'Не указан' }}</div>
+                                            @can('manage', $team)
+                                                <div class="c_search-char__teamitem-rang">
+                                                    <form action="{{ route('teams.reject', $team->id) }}" method="post"
+                                                          id="denyForm__{{ $user->id }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                    </form>
+
+                                                    <a href="#"
+                                                       onclick="event.preventDefault(); document.getElementById('denyForm__{{ $user->id }}').submit();"
+                                                       style="color: white; text-decoration: none; margin-left: 5px;">
+                                                        {{--{{ trans('team.show.join.deny') }}--}}
+                                                        Delete
+                                                    </a>
+                                                </div>
+                                            @endcan
                                         </div>
                                     @empty
                                         <div class="c_search-char__teamitem">
@@ -147,7 +157,7 @@
                                         </div>
                                     @endforelse
 
-                                    @component('parts.teams.join', ['team' => $team])
+                                    @component('parts.teams.join', ['team' => $team, 'role' => 'main_part'])
                                     @endcomponent
                                 </div>
 
@@ -164,6 +174,22 @@
                                             </div>
                                             <div class="c_search-char__teamitem-years">{{ $user->age ?? 'Не указан' }}</div>
                                             <div class="c_search-char__teamitem-city">{{ $user->city ?? 'Не указан' }}</div>
+                                            @can('manage', $team)
+                                                <div class="c_search-char__teamitem-rang">
+                                                    <form action="{{ route('teams.reject', $team->id) }}" method="post"
+                                                          id="denyForm__{{ $user->id }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                    </form>
+
+                                                    <a href="#"
+                                                       onclick="event.preventDefault(); document.getElementById('denyForm__{{ $user->id }}').submit();"
+                                                       style="color: white; text-decoration: none; margin-left: 5px;">
+                                                        {{--{{ trans('team.show.join.deny') }}--}}
+                                                        Delete
+                                                    </a>
+                                                </div>
+                                            @endcan
                                         </div>
                                     @empty
                                         <div class="c_search-char__teamitem">
@@ -171,13 +197,8 @@
                                         </div>
                                     @endforelse
 
-                                    @can('join', $team)
-                                        <div class="c_search-char__teamfree">
-                                            <div class="c_search-char__teamitem-type c_search-char__doplist-sniper"></div>
-                                            <div class="c_search-char__teamitem-vakant">Вакантно</div>
-                                            <div class="c_search-char__teamitem-callme">Откликнуться</div>
-                                        </div>
-                                    @endcan
+                                    @component('parts.teams.join', ['team' => $team, 'role' => 'additional_part'])
+                                    @endcomponent
                                 </div>
 
                                 <div class="c_search-char__title">Менеджмент команды</div>
@@ -193,6 +214,22 @@
                                             </div>
                                             <div class="c_search-char__teamitem-years">{{ $user->age ?? 'Не указан' }}</div>
                                             <div class="c_search-char__teamitem-city">{{ $user->city ?? 'Не указан' }}</div>
+                                            @can('manage', $team)
+                                                <div class="c_search-char__teamitem-rang">
+                                                    <form action="{{ route('teams.reject', $team->id) }}" method="post"
+                                                          id="denyForm__{{ $user->id }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                    </form>
+
+                                                    <a href="#"
+                                                       onclick="event.preventDefault(); document.getElementById('denyForm__{{ $user->id }}').submit();"
+                                                       style="color: white; text-decoration: none; margin-left: 5px;">
+                                                        {{--{{ trans('team.show.join.deny') }}--}}
+                                                        Delete
+                                                    </a>
+                                                </div>
+                                            @endcan
                                         </div>
                                     @empty
                                         <div class="c_search-char__teamitem">
@@ -200,14 +237,59 @@
                                         </div>
                                     @endforelse
 
-                                    @can('join', $team)
-                                        <div class="c_search-char__teamfree">
-                                            <div class="c_search-char__teamitem-type c_search-char__doplist-sniper"></div>
-                                            <div class="c_search-char__teamitem-vakant">Вакантно</div>
-                                            <div class="c_search-char__teamitem-callme">Откликнуться</div>
-                                        </div>
-                                    @endcan
+                                    @component('parts.teams.join', ['team' => $team, 'role' => 'manager'])
+                                    @endcomponent
                                 </div>
+
+                                @can('manage', $team)
+                                    <div class="c_search-char__title">Заявки</div>
+                                    <div class="c_search-char__teamlist">
+                                        @forelse($requests as $request)
+                                            <div class="c_search-char__teamitem">
+                                                <div class="c_search-char__teamitem-type c_search-char__doplist-sniper"></div>
+                                                <div class="c_search-char__teamitem-nickname">
+                                                    <a href="{{ route('profile.show', $request->id) }}"
+                                                       style="color: white; text-decoration: none;">
+                                                        {{ $request->login }}
+                                                    </a>
+                                                </div>
+                                                <div class="c_search-char__teamitem-age">
+                                                    {{ $request->pivot->role }}
+                                                </div>
+                                                <div class="c_search-char__teamitem-city" style="float: right;">
+                                                    <form action="{{ route('teams.accept', $team->id) }}" method="post"
+                                                          id="acceptForm__{{ $request->id }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="user_id" value="{{ $request->id }}">
+                                                    </form>
+
+                                                    <form action="{{ route('teams.reject', $team->id) }}" method="post"
+                                                          id="denyForm__{{ $request->id }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="user_id" value="{{ $request->id }}">
+                                                    </form>
+
+                                                    <a href="#"
+                                                       onclick="event.preventDefault(); document.getElementById('acceptForm__{{ $request->id }}').submit();"
+                                                       style="color: white; text-decoration: none;">
+                                                        {{--{{ trans('team.show.join.accept') }}--}}
+                                                        Accept
+                                                    </a>
+                                                    <a href="#"
+                                                       onclick="event.preventDefault(); document.getElementById('denyForm__{{ $request->id }}').submit();"
+                                                       style="color: white; text-decoration: none; margin-left: 5px;">
+                                                        {{--{{ trans('team.show.join.deny') }}--}}
+                                                        Deny
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div class="c_search-char__teamitem">
+                                                <div>Нет заявок :(</div>
+                                            </div>
+                                        @endforelse
+                                    </div>
+                                @endcan
                             </div><!-- Game data ================================= -->
 
 

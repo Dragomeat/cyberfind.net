@@ -54,7 +54,16 @@ Route::get('contacts', function () {
 Route::get('teams/search', 'TeamsController@search')
     ->name('teams.search');
 
+Route::post('teams/{team}/accept', 'TeamsController@accept')
+    ->name('teams.accept');
+
+Route::post('teams/{team}/reject', 'TeamsController@reject')
+    ->name('teams.reject');
+
 Route::post('teams/{team}/join', 'TeamsController@join')
     ->name('teams.join');
+
+Route::post('teams/{team}/leave', 'TeamsController@leave')
+    ->name('teams.leave');
 
 Route::resource('teams', 'TeamsController');

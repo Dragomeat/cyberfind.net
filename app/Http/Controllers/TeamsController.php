@@ -1,12 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Team\Join\AcceptRequest;
+use App\Http\Requests\Team\Join\RejectRequest;
 use App\Models\Map;
 use App\Models\Team;
-use App\Http\Requests\JoinTeamRequest;
-use App\Http\Requests\CreateTeamRequest;
-use App\Http\Requests\UpdateTeamRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\Team\CreateRequest;
+use App\Http\Requests\Team\UpdateRequest;
+use App\Http\Requests\Team\Join\JoinRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class TeamsController extends Controller
@@ -23,7 +29,7 @@ class TeamsController extends Controller
     public function show(int $id)
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -42,6 +48,7 @@ class TeamsController extends Controller
             'email' => $team->links->email ?? $commander->email,
             'telephone' => $team->links->telephone ?? $commander->telephone,
             'skype' => $team->links->skype ?? $commander->skype,
+            'requests' => $team->getUsersWhereStatus(['pending', 'rejected'])
         ]);
     }
 
@@ -75,7 +82,7 @@ class TeamsController extends Controller
         ]);
     }
 
-    public function update(UpdateTeamRequest $request, int $id)
+    public function update(UpdateRequest $request, int $id)
     {
         $team = Team::findOrFail($id);
 
@@ -128,7 +135,7 @@ class TeamsController extends Controller
             ->with('status', 'Error!');
     }
 
-    public function store(CreateTeamRequest $request, Authenticatable $user)
+    public function store(CreateRequest $request, Authenticatable $user)
     {
         $payload = $request->only([
             'title',
@@ -165,7 +172,7 @@ class TeamsController extends Controller
         );
     }
 
-    public function join(JoinTeamRequest $request, Authenticatable $user, int $id)
+    public function join(JoinRequest $request, Authenticatable $user, int $id)
     {
         /**
          * @var Team
@@ -180,6 +187,54 @@ class TeamsController extends Controller
             ->back()
             ->with('status', 'Succesfuly attached!');
     }
+
+    public function leave(Authenticatable $user, int $id)
+    {
+        $team = Team::findOrFail($id);
+
+        $this->authorize('leave', $team);
+
+        $team->users()->detach($user);
+
+        return redirect()
+            ->back()
+            ->with('status', 'Succesfuly detached!');
+    }
+
+    public function accept(AcceptRequest $request, int $id)
+    {
+        /**
+         * @var Team $team
+         */
+        $team = Team::findOrFail($id);
+        $userId = $request->get('user_id');
+
+        $this->authorize('manage', $team);
+
+        $team->users()->updateExistingPivot($userId, ['status' => 'accepted']);
+
+        return redirect()
+            ->back()
+            ->with('status', 'Succesfuly applied!');
+    }
+
+    public function reject(RejectRequest $request, int $id)
+    {
+        /**
+         * @var Team $team
+         */
+        $team = Team::findOrFail($id);
+        $userId = $request->get('user_id');
+
+        $this->authorize('manage', $team);
+
+        $team->users()->updateExistingPivot($userId, ['status' => 'rejected']);
+
+        return redirect()
+            ->back()
+            ->with('status', 'Succesfuly applied!');
+    }
+
 
     public function search()
     {
