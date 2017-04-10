@@ -26,7 +26,7 @@ class AcceptRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'exists:users,id|required'
+            'user_id' => 'exists:users,id|required',
         ];
     }
 }
