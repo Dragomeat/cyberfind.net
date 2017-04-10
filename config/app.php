@@ -167,8 +167,6 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, //dev
-        Barryvdh\Debugbar\ServiceProvider::class, //dev
         SocialiteProviders\Manager\ServiceProvider::class,
         Service\ContentRenderer\ContentRendererServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,

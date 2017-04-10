@@ -6,6 +6,8 @@ use App\Models\Team\Map;
 use ReCaptcha\ReCaptcha;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Barryvdh\Debugbar\ServiceProvider as DebugbarProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -46,5 +48,10 @@ class AppServiceProvider extends ServiceProvider
                 config('services.recaptcha.secret_key')
             );
         });
+
+        if ($this->app->isLocal()) {
+            $this->app->register(IdeHelperServiceProvider::class);
+            $this->app->register(DebugbarProvider::class);
+        }
     }
 }
