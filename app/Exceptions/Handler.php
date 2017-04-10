@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -50,6 +51,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof QueryException) {
+            return redirect()->back()
+                ->with([
+                'status' => 'Данная почтв уже занята!'
+            ], 500);
+        }
+
         return response()->view('errors.500', [
             'sentryID' => $this->sentryID,
         ], 500);
