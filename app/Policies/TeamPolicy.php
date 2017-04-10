@@ -48,7 +48,7 @@ class TeamPolicy
      */
     public function leave(User $user, Team $team)
     {
-        return (bool)$team->findUserWhereStatus($user->id, ['accepted', 'pending']);
+        return (bool) $team->findUserWhereStatus($user->id, ['accepted', 'pending']);
     }
 
     /**
