@@ -6,9 +6,9 @@ use App\Models\Team\Map;
 use ReCaptcha\ReCaptcha;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Sentry\SentryLaravel\SentryLaravelServiceProvider;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Barryvdh\Debugbar\ServiceProvider as DebugbarProvider;
-use Sentry\SentryLaravel\SentryLaravelServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
