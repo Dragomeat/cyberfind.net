@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof QueryException) {
-            return redirect()->back()
+            return redirect(route('index'))
                 ->with([
                 'status' => 'Данная почтв уже занята!',
             ], 500);
