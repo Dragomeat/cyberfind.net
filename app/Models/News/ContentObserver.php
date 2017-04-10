@@ -8,8 +8,7 @@ use App\Models\News;
 use Service\ContentRenderer\ContentRendererInterface;
 
 /**
- * Class ContentObserver
- * @package App\Models\News
+ * Class ContentObserver.
  */
 class ContentObserver
 {

@@ -7,8 +7,7 @@ namespace Service\ImageUploader\Resolvers;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 /**
- * Class AvatarResolver
- * @package Service\ImageUploader\Resolvers
+ * Class AvatarResolver.
  */
 class AvatarResolver implements ImageResolverInterface
 {

@@ -7,8 +7,7 @@ namespace App\Models\User;
 use CommerceGuys\Enum\AbstractEnum;
 
 /**
- * Class Gender
- * @package App\Models\User
+ * Class Gender.
  */
 final class Gender extends AbstractEnum
 {

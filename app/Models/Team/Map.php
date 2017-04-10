@@ -7,8 +7,7 @@ namespace App\Models\Team;
 use CommerceGuys\Enum\AbstractEnum;
 
 /**
- * Class Map
- * @package App\Models\Team
+ * Class Map.
  */
 final class Map extends AbstractEnum
 {
