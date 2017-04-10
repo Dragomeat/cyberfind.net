@@ -7,8 +7,7 @@ namespace App\Models\User;
 use CommerceGuys\Enum\AbstractEnum;
 
 /**
- * Class Country
- * @package App\Models\User
+ * Class Country.
  */
 final class Country extends AbstractEnum
 {

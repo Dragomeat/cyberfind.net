@@ -7,8 +7,7 @@ namespace App\Models\Team;
 use CommerceGuys\Enum\AbstractEnum;
 
 /**
- * Class Roles
- * @package App\Models\Team
+ * Class Roles.
  */
 final class Roles extends AbstractEnum
 {

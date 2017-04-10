@@ -9,8 +9,7 @@ use App\Jobs\UploadAvatarProcess;
 use Illuminate\Contracts\Bus\Dispatcher;
 
 /**
- * Class AvatarUploaderObserver
- * @package App\Models\User
+ * Class AvatarUploaderObserver.
  */
 class AvatarUploaderObserver
 {
