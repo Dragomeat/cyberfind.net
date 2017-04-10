@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class Team extends Model
 {
@@ -77,7 +77,7 @@ class Team extends Model
 
     public function checkJoinUser($id)
     {
-        return (bool)$this->findUserWhereStatus($id);
+        return (bool) $this->findUserWhereStatus($id);
     }
 
     public function getLinksAttribute()

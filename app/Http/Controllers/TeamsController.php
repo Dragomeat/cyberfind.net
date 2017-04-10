@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Team\Join\AcceptRequest;
-use App\Http\Requests\Team\Join\RejectRequest;
 use App\Models\Map;
 use App\Models\Team;
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Team\CreateRequest;
 use App\Http\Requests\Team\UpdateRequest;
 use App\Http\Requests\Team\Join\JoinRequest;
+use App\Http\Requests\Team\Join\AcceptRequest;
+use App\Http\Requests\Team\Join\RejectRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class TeamsController extends Controller
@@ -29,7 +28,7 @@ class TeamsController extends Controller
     public function show(int $id)
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -48,7 +47,7 @@ class TeamsController extends Controller
             'email' => $team->links->email ?? $commander->email,
             'telephone' => $team->links->telephone ?? $commander->telephone,
             'skype' => $team->links->skype ?? $commander->skype,
-            'requests' => $team->getUsersWhereStatus(['pending', 'rejected'])
+            'requests' => $team->getUsersWhereStatus(['pending', 'rejected']),
         ]);
     }
 
@@ -204,7 +203,7 @@ class TeamsController extends Controller
     public function accept(AcceptRequest $request, int $id)
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
         $userId = $request->get('user_id');
@@ -221,7 +220,7 @@ class TeamsController extends Controller
     public function reject(RejectRequest $request, int $id)
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
         $userId = $request->get('user_id');
@@ -234,7 +233,6 @@ class TeamsController extends Controller
             ->back()
             ->with('status', 'Succesfuly applied!');
     }
-
 
     public function search()
     {
