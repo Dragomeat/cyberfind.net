@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 04.04.17
- * Time: 13:56.
- */
+
+declare(strict_types=1);
 
 namespace Service\ImageUploader\Resolvers;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
 
+/**
+ * Class AvatarResolver
+ * @package Service\ImageUploader\Resolvers
+ */
 class AvatarResolver implements ImageResolverInterface
 {
     /**
@@ -48,6 +48,10 @@ class AvatarResolver implements ImageResolverInterface
             : $this->resolver->resolve();
     }
 
+    /**
+     * @param string $avatar
+     * @return $this
+     */
     public function setAvatarPath(string $avatar)
     {
         $this->avatar = $avatar;
@@ -55,6 +59,10 @@ class AvatarResolver implements ImageResolverInterface
         return $this;
     }
 
+    /**
+     * @param ImageResolverInterface $resolver
+     * @return $this
+     */
     public function setDefaultResolver(ImageResolverInterface $resolver)
     {
         $this->resolver = $resolver;

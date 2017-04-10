@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 23:08.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\Team;
 
 use CommerceGuys\Enum\AbstractEnum;
 
+/**
+ * Class Map
+ * @package App\Models\Team
+ */
 final class Map extends AbstractEnum
 {
     public const MIRAGE = 'mirage';

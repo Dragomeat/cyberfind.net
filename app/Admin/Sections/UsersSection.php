@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 10:03.
- */
+
+declare(strict_types=1);
 
 namespace App\Admin\Sections;
 
@@ -19,6 +15,10 @@ use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Contracts\Form as FormInterface;
 use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
 
+/**
+ * Class UsersSection
+ * @package App\Admin\Sections
+ */
 class UsersSection extends Section implements Initializable
 {
     /**
@@ -76,11 +76,10 @@ class UsersSection extends Section implements Initializable
 
     /**
      * @param int $id
-     *
      * @param bool $create
      * @return FormInterface
      */
-    public function onEdit($id, bool $create = false)
+    public function onEdit(int $id, bool $create = false)
     {
         $tabs = AdminDisplay::tabbed()->setElements([
             trans('admin_users.tabs.general') => new FormElements([

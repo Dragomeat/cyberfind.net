@@ -1,13 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 10:35.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\User;
 
+/**
+ * Class GravatarSupportable
+ * @package App\Models\User
+ */
 trait GravatarSupportable
 {
     /**

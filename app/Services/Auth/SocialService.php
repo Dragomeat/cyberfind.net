@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 18:38.
- */
+
+declare(strict_types=1);
 
 namespace App\Services\Auth;
 
@@ -12,11 +8,20 @@ use App\Models\User;
 use App\Models\UserSocial;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use SocialiteProviders\Manager\Contracts\OAuth2\ProviderInterface;
+use Laravel\Socialite\Two\ProviderInterface;
 
+/**
+ * Class SocialService
+ * @package App\Services\Auth
+ */
 class SocialService
 {
-    public function createOrGetUser($provider, string $providerName)
+    /**
+     * @param ProviderInterface $provider
+     * @param string $providerName
+     * @return \Illuminate\Database\Eloquent\Model|mixed
+     */
+    public function createOrGetUser(ProviderInterface $provider, string $providerName)
     {
         /**
          * @var ProviderInterface

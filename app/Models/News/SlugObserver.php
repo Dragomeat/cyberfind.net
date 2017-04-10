@@ -1,16 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 04.04.17
- * Time: 18:58.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\News;
 
 use App\Models\News;
 use Illuminate\Support\Str;
 
+/**
+ * Class SlugObserver
+ * @package App\Models\News
+ */
 class SlugObserver
 {
     /**

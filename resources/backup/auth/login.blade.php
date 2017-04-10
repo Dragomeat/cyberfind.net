@@ -1,0 +1,108 @@
+@extends('layouts.app')
+
+@section('breadcrumbs')
+    @component('parts.breadcrumbs', ['breadcrumbs' => [
+        trans('header.links.login')
+    ]])
+    @endcomponent
+@endsection
+
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="panel panel-default c_panel c_panel__form">
+                <div class="panel-heading">{{ trans('header.links.login') }}</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('auth.login.post') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-4">
+                                <input id="email" type="email" class="form-control" name="email"
+                                       value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-4">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="g-recaptcha"
+                                     data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+                                <span class="c_login__or">or</span>
+                                <button class="btn btn-submit"
+                                        type="button"
+                                        data-container="body"
+                                        data-source="socialLogin"
+                                        data-toggle="popover"
+                                        data-placement="top">
+                                    Social login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('auth.password.request') }}">
+                                    Forgot Your Password?
+                                </a>
+
+                                <div id="socialLogin" class="hidden">
+                                    <ul class="c_socials c_socials__login list-inline">
+                                        <li class="vk">
+                                            <a href="{{ route('auth.social', 'vkontakte') }}"></a>
+                                        </li>
+                                        <li class="fb">
+                                            <a href="{{ route('auth.social', 'facebook') }}"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

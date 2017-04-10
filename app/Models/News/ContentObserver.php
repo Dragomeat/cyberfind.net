@@ -1,16 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 04.04.17
- * Time: 19:04.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\News;
 
 use App\Models\News;
 use Service\ContentRenderer\ContentRendererInterface;
 
+/**
+ * Class ContentObserver
+ * @package App\Models\News
+ */
 class ContentObserver
 {
     /**
@@ -18,11 +18,18 @@ class ContentObserver
      */
     private $renderer;
 
+    /**
+     * ContentObserver constructor.
+     * @param ContentRendererInterface $renderer
+     */
     public function __construct(ContentRendererInterface $renderer)
     {
         $this->renderer = $renderer;
     }
 
+    /**
+     * @param News $news
+     */
     public function saving(News $news): void
     {
         if ($news->content_rendered && !$news->content_source) {

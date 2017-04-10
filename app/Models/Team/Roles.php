@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 23:08.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\Team;
 
 use CommerceGuys\Enum\AbstractEnum;
 
+/**
+ * Class Roles
+ * @package App\Models\Team
+ */
 final class Roles extends AbstractEnum
 {
     public const COMMANDER = 'commander';

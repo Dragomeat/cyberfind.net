@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 10:03.
- */
+
+declare(strict_types=1);
 
 namespace App\Admin\Sections;
 
@@ -18,6 +14,10 @@ use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Contracts\Form as FormInterface;
 use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
 
+/**
+ * Class TagsSection
+ * @package App\Admin\Sections
+ */
 class TagsSection extends Section implements Initializable
 {
     /**
@@ -77,7 +77,7 @@ class TagsSection extends Section implements Initializable
      *
      * @return FormInterface
      */
-    public function onEdit($id)
+    public function onEdit(int $id)
     {
         return AdminForm::panel()->addBody(
             AdminFormElement::text('name', 'Name')->required()

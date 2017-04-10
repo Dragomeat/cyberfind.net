@@ -1,15 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 21:09.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\Traits;
 
+/**
+ * Class GetsUrlSocialNetworks
+ * @package App\Models\Traits
+ */
 trait GetsUrlSocialNetworks
 {
+    /**
+     * @return null|string
+     */
     public function getVkontakteUrlAttribute()
     {
         if ($vkontakte = $this->getSocialNetworkByProvider('vkontakte')) {
@@ -22,6 +25,9 @@ trait GetsUrlSocialNetworks
         return null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getFacebookUrlAttribute()
     {
         if ($facebook = $this->getSocialNetworkByProvider('facebook')) {

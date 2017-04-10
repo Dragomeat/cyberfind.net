@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 23:08.
- */
+
+declare(strict_types=1);
 
 namespace App\Models\User;
 
 use CommerceGuys\Enum\AbstractEnum;
 
+/**
+ * Class Gender
+ * @package App\Models\User
+ */
 final class Gender extends AbstractEnum
 {
     public const MALE = 'male';

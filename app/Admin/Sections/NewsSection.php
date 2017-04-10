@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norton
- * Date: 03.04.17
- * Time: 10:03.
- */
+
+declare(strict_types=1);
 
 namespace App\Admin\Sections;
 
@@ -19,6 +15,10 @@ use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Contracts\Form as FormInterface;
 use SleepingOwl\Admin\Contracts\Display as DisplayInterface;
 
+/**
+ * Class NewsSection
+ * @package App\Admin\Sections
+ */
 class NewsSection extends Section implements Initializable
 {
     /**
