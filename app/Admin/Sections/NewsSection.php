@@ -84,7 +84,7 @@ class NewsSection extends Section implements Initializable
      * @param bool $create
      * @return FormInterface
      */
-    public function onEdit($id, bool $create = false)
+    public function onEdit(int $id, bool $create = false)
     {
         return AdminForm::panel()->addBody(
             AdminFormElement::text('title', 'Title')->required(),
@@ -112,6 +112,6 @@ class NewsSection extends Section implements Initializable
      */
     public function onCreate()
     {
-        return $this->onEdit(null, true);
+        return $this->onEdit(0, true);
     }
 }

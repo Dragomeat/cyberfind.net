@@ -146,6 +146,6 @@ class UsersSection extends Section implements Initializable
      */
     public function onCreate()
     {
-        return $this->onEdit(null, true);
+        return $this->onEdit(0, true);
     }
 }
