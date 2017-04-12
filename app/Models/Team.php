@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Class Team
+ * @package App\Models
+ */
 class Team extends Model
 {
     use Searchable;
@@ -35,12 +41,18 @@ class Team extends Model
         'updated_at',
     ];
 
-    public function searchableAs()
+    /**
+     * @return string
+     */
+    public function searchableAs(): string
     {
         return 'title';
     }
 
-    public function users()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withPivot(['role', 'status']);
     }
@@ -65,22 +77,35 @@ class Team extends Model
             ->first();
     }
 
-    public function maps()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function maps(): HasMany
     {
         return $this->hasMany(Map::class);
     }
 
-    public function tournaments()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tournaments(): BelongsToMany
     {
         return $this->belongsToMany(Tournament::class);
     }
 
-    public function checkJoinUser($id)
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function checkJoinUser($id): bool
     {
-        return (bool) $this->findUserWhereStatus($id);
+        return (bool)$this->findUserWhereStatus($id);
     }
 
-    public function getLinksAttribute()
+    /**
+     * @return array|null
+     */
+    public function getLinksAttribute(): ?array
     {
         if (null === $contacts = $this->attributes['contacts']) {
             return null;
@@ -89,7 +114,10 @@ class Team extends Model
         return json_decode($contacts)->contacts;
     }
 
-    public function getSocialsAttribute()
+    /**
+     * @return array|null
+     */
+    public function getSocialsAttribute(): ?array
     {
         if (null === $contacts = $this->attributes['contacts']) {
             return null;
@@ -98,6 +126,9 @@ class Team extends Model
         return json_decode($contacts)->socials;
     }
 
+    /**
+     * @return User
+     */
     public function getCommanderAttribute(): User
     {
         return $this->getUsersWhereRole('commander')->first();

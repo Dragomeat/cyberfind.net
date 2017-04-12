@@ -27,13 +27,14 @@ class ContentObserver
     }
 
     /**
-     * @param News $news
+     * @param \App\Models\News $news
      */
-    public function saving(News $news): void
+    public function saving(News $news)
     {
         if ($news->content_rendered && !$news->content_source) {
             return;
         }
+
         $rendered = $this->renderer->render((string) $news->content_source);
         $news->content_rendered = (string) $rendered;
     }

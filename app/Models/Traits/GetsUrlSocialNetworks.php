@@ -12,7 +12,7 @@ trait GetsUrlSocialNetworks
     /**
      * @return null|string
      */
-    public function getVkontakteUrlAttribute()
+    public function getVkontakteUrlAttribute(): ?string
     {
         if ($vkontakte = $this->getSocialNetworkByProvider('vkontakte')) {
             return sprintf(

@@ -8,9 +8,6 @@ use App\Models\User;
 use App\Jobs\UploadAvatarProcess;
 use Illuminate\Contracts\Bus\Dispatcher;
 
-/**
- * Class AvatarUploaderObserver.
- */
 class AvatarUploaderObserver
 {
     /**
@@ -27,6 +24,9 @@ class AvatarUploaderObserver
         $this->dispatcher = $dispatcher;
     }
 
+    /**
+     * @param User $user
+     */
     public function saved(User $user)
     {
         if ($user->hasAvatar()) {
