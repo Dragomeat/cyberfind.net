@@ -65,10 +65,10 @@
 </header><!-- .header-->
 
 <main class="b_box content">
-    @if (session('status'))
+    @if (isset($status))
         <div class="c_reg-item b_inb">
-            <div class="c_reg-item__box" style="float: none">
-                <input type="text"  style="border-color: green; color: green;" value="{{ session('status') }}" readonly/>
+            <div class="c_reg-item__box" style="float: none; width: 100%;">
+                <input type="text"  style="{{ $status['style'] }} text-align: center;" value="{{ $status['message'] }}" readonly/>
             </div>
         </div>
     @endif
