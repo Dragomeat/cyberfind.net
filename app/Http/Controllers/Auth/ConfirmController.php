@@ -40,6 +40,9 @@ class ConfirmController extends Controller
 
         return redirect(
             route('index')
-        )->with('status', "Ваш E-mail &laquo;$user->email&raquo; успешно подтверждён");
+        )->with('status', [
+            'message' => sprintf('Ваш E-mail &laquo;%s&raquo; успешно подтверждён', $user->email),
+            'type' => 'success',
+        ]);
     }
 }

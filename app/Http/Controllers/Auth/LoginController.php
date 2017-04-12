@@ -59,9 +59,9 @@ class LoginController extends Controller
     /**
      * @param Request $request
      * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse|null
      */
-    protected function authenticated(Request $request, User $user): RedirectResponse
+    protected function authenticated(Request $request, User $user): ?RedirectResponse
     {
         if (!$user->is_confirmed) {
             $this->logout($request);

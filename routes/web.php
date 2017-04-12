@@ -43,13 +43,11 @@ Route::get('search/users/{search}', function (string $search) {
     return \App\Models\User::search($search)->get();
 })->name('search.index');
 
-Route::get('about', function () {
-    return 'about';
-})->name('about');
+Route::get('about', 'AboutController@about')->name('about');
+Route::get('partners','AboutController@partners')->name('about.partners');
 
-Route::get('contacts', function () {
-    return 'contacts';
-})->name('about.contacts');
+Route::get('contacts','AboutController@contacts')->name('about.contacts');
+Route::post('feedback','AboutController@feedback')->name('about.feedback');
 
 Route::get('teams/search', 'TeamsController@search')
     ->name('teams.search');
