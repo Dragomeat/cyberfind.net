@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
- * Class ConfirmController
- * @package App\Http\Controllers\Auth
+ * Class ConfirmController.
  */
 class ConfirmController extends Controller
 {
@@ -29,7 +28,7 @@ class ConfirmController extends Controller
         $email = Arr::get($jwt->decode($token), 'email');
 
         /**
-         * @var \App\Models\User $user
+         * @var \App\Models\User
          */
         $user = User::whereEmail($email)
             ->whereIsConfirmed(false)

@@ -6,19 +6,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Map;
 use App\Models\Team;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Team\CreateRequest;
 use App\Http\Requests\Team\UpdateRequest;
 use App\Http\Requests\Team\Join\JoinRequest;
 use App\Http\Requests\Team\Join\AcceptRequest;
 use App\Http\Requests\Team\Join\RejectRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\View\View;
 
 /**
- * Class TeamsController
- * @package App\Http\Controllers
+ * Class TeamsController.
  */
 class TeamsController extends Controller
 {
@@ -41,7 +40,7 @@ class TeamsController extends Controller
     public function show(int $id): View
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -82,7 +81,7 @@ class TeamsController extends Controller
     public function edit(int $id): View
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -111,7 +110,7 @@ class TeamsController extends Controller
     public function update(UpdateRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -166,7 +165,7 @@ class TeamsController extends Controller
             ->back()
             ->with('status', [
                 'message' => 'Error!',
-                'type' => 'error'
+                'type' => 'error',
             ]);
     }
 
@@ -213,7 +212,7 @@ class TeamsController extends Controller
         }
 
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::create($attributes);
 
@@ -236,7 +235,7 @@ class TeamsController extends Controller
     public function join(JoinRequest $request, Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -261,7 +260,7 @@ class TeamsController extends Controller
     public function leave(Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -286,7 +285,7 @@ class TeamsController extends Controller
     public function accept(AcceptRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
         $userId = $request->get('user_id');
@@ -312,7 +311,7 @@ class TeamsController extends Controller
     public function reject(RejectRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
         $userId = $request->get('user_id');

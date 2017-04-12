@@ -5,18 +5,16 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Profile\UpdateRequest;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\View\View;
 
 /**
- * Class ProfileController
- * @package App\Http\Controllers
+ * Class ProfileController.
  */
 class ProfileController extends Controller
 {
-
     /**
      * @param int $id
      * @return \Illuminate\View\View
@@ -24,7 +22,7 @@ class ProfileController extends Controller
     public function show(int $id): View
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
@@ -45,7 +43,7 @@ class ProfileController extends Controller
     public function edit(int $id): View
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
@@ -58,7 +56,6 @@ class ProfileController extends Controller
         ]);
     }
 
-
     /**
      * @param UpdateRequest $request
      * @param Filesystem $fs
@@ -69,7 +66,7 @@ class ProfileController extends Controller
     public function update(UpdateRequest $request, Filesystem $fs, int $id): RedirectResponse
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = User::findOrFail($id);
 
@@ -112,11 +109,10 @@ class ProfileController extends Controller
             return redirect()->back();
         }
 
-
         return redirect()->back()->with([
             'status' => [
                 'message' => 'Произошла неизвестная ошибка! Мы уже с ней разбираемся :)',
-                'type' => 'error'
+                'type' => 'error',
             ],
         ]);
     }
