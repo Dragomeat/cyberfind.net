@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FeedbackRequest;
 use App\Models\Feedback;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\FeedbackRequest;
 
 /**
- * Class AboutController
- * @package App\Http\Controllers
+ * Class AboutController.
  */
 class AboutController extends Controller
 {

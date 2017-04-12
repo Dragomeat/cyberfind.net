@@ -7,8 +7,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class FeedbackRequest
- * @package App\Http\Requests
+ * Class FeedbackRequest.
  */
 class FeedbackRequest extends FormRequest
 {
