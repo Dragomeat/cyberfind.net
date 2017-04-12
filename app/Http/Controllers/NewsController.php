@@ -8,8 +8,7 @@ use App\Models\News;
 use Illuminate\View\View;
 
 /**
- * Class NewsController
- * @package App\Http\Controllers
+ * Class NewsController.
  */
 class NewsController extends Controller
 {

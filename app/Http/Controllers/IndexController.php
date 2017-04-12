@@ -7,8 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 
 /**
- * Class IndexController
- * @package App\Http\Controllers
+ * Class IndexController.
  */
 class IndexController extends Controller
 {

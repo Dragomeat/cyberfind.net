@@ -6,15 +6,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Services\Auth\SocialService;
-use Illuminate\Database\QueryException;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\QueryException;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class SocialController
- * @package App\Http\Controllers\Auth
+ * Class SocialController.
  */
 class SocialController extends Controller
 {
@@ -71,7 +70,7 @@ class SocialController extends Controller
                     ->with([
                         'status' => [
                             'message' => 'Данная почта уже занята!',
-                            'type' => 'error'
+                            'type' => 'error',
                         ],
                     ]);
             }

@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
 use App\Http\Requests\Auth\RestoreRequest;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\View\View;
 
 /**
- * Class ForgotPasswordController
- * @package App\Http\Controllers\Auth
+ * Class ForgotPasswordController.
  */
 class ForgotPasswordController extends Controller
 {
