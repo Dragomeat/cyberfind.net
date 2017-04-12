@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Map
- * @package App\Models
+ * Class Map.
  */
 class Map extends Model
 {
@@ -27,7 +26,7 @@ class Map extends Model
      * @var array
      */
     protected $fillable = [
-        'map'
+        'map',
     ];
 
     /**

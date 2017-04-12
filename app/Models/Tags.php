@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Class Tags
- * @package App\Models
+ * Class Tags.
  */
 class Tags extends Model
 {

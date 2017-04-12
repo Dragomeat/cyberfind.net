@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Composers;
 
-
-use Illuminate\Contracts\Session\Session;
 use Illuminate\View\View;
+use Illuminate\Contracts\Session\Session;
 
 class MessageComposer
 {
