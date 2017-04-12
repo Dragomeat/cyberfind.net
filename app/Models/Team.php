@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Class Team
- * @package App\Models
+ * Class Team.
  */
 class Team extends Model
 {
@@ -99,7 +98,7 @@ class Team extends Model
      */
     public function checkJoinUser($id): bool
     {
-        return (bool)$this->findUserWhereStatus($id);
+        return (bool) $this->findUserWhereStatus($id);
     }
 
     /**

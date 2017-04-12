@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Tournament
- * @package App\Models
+ * Class Tournament.
  */
 class Tournament extends Model
 {

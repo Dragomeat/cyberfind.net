@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class UserSocial
- * @package App\Models
+ * Class UserSocial.
  */
 class UserSocial extends Model
 {
