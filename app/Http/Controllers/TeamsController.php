@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Map;
 use App\Models\Team;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\Team\CreateRequest;
 use App\Http\Requests\Team\UpdateRequest;
@@ -13,10 +14,18 @@ use App\Http\Requests\Team\Join\JoinRequest;
 use App\Http\Requests\Team\Join\AcceptRequest;
 use App\Http\Requests\Team\Join\RejectRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\View\View;
 
+/**
+ * Class TeamsController
+ * @package App\Http\Controllers
+ */
 class TeamsController extends Controller
 {
-    public function index()
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function index(): View
     {
         $teams = Team::paginate(10);
 
@@ -25,10 +34,14 @@ class TeamsController extends Controller
         ]);
     }
 
-    public function show(int $id)
+    /**
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function show(int $id): View
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -51,17 +64,25 @@ class TeamsController extends Controller
         ]);
     }
 
-    public function create()
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function create(): View
     {
         return view('teams.create', [
             'maps' => Team\Map::getAll(),
         ]);
     }
 
-    public function edit(int $id)
+    /**
+     * @param int $id
+     * @return \Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function edit(int $id): View
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -81,8 +102,17 @@ class TeamsController extends Controller
         ]);
     }
 
-    public function update(UpdateRequest $request, int $id)
+    /**
+     * @param UpdateRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(UpdateRequest $request, int $id): RedirectResponse
     {
+        /**
+         * @var Team $team
+         */
         $team = Team::findOrFail($id);
 
         $this->authorize('update', $team);
@@ -102,7 +132,7 @@ class TeamsController extends Controller
         $deleteMaps = array_diff($exceptMaps, $inputMaps);
 
         while ($map = array_shift($insertMaps)) {
-            array_push($maps, new Map(['map' => $map]));
+            $maps[] = new Map(['map' => $map]);
         }
 
         $age = explode('-', $request->get('age'));
@@ -126,15 +156,37 @@ class TeamsController extends Controller
         if ($team->update($attributes)) {
             return redirect()
                 ->back()
-                ->with('status', 'Succesfuly updated!');
+                ->with('status', [
+                    'message' => 'Succesfuly updated!',
+                    'type' => 'success',
+                ]);
         }
 
         return redirect()
             ->back()
-            ->with('status', 'Error!');
+            ->with('status', [
+                'message' => 'Error!',
+                'type' => 'error'
+            ]);
     }
 
-    public function store(CreateRequest $request, Authenticatable $user)
+    /**
+     * @param $value
+     * @return array
+     */
+    private function filterArray($value): array
+    {
+        return array_filter(
+            array_values($value)[0] ?? []
+        );
+    }
+
+    /**
+     * @param CreateRequest $request
+     * @param Authenticatable $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(CreateRequest $request, Authenticatable $user): RedirectResponse
     {
         $payload = $request->only([
             'title',
@@ -157,9 +209,12 @@ class TeamsController extends Controller
         ]);
 
         while ($map = array_shift($inputMaps)) {
-            array_push($maps, new Map(['map' => $map]));
+            $maps[] = new Map(['map' => $map]);
         }
 
+        /**
+         * @var Team $team
+         */
         $team = Team::create($attributes);
 
         $team->users()->attach($user, ['role' => 'commander', 'status' => 'accepted']);
@@ -171,10 +226,17 @@ class TeamsController extends Controller
         );
     }
 
-    public function join(JoinRequest $request, Authenticatable $user, int $id)
+    /**
+     * @param JoinRequest $request
+     * @param Authenticatable $user
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function join(JoinRequest $request, Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -184,11 +246,23 @@ class TeamsController extends Controller
 
         return redirect()
             ->back()
-            ->with('status', 'Succesfuly attached!');
+            ->with('status', [
+                'message' => 'Succesfuly attached!',
+                'type' => 'success',
+            ]);
     }
 
-    public function leave(Authenticatable $user, int $id)
+    /**
+     * @param Authenticatable $user
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function leave(Authenticatable $user, int $id): RedirectResponse
     {
+        /**
+         * @var Team $team
+         */
         $team = Team::findOrFail($id);
 
         $this->authorize('leave', $team);
@@ -197,13 +271,22 @@ class TeamsController extends Controller
 
         return redirect()
             ->back()
-            ->with('status', 'Succesfuly detached!');
+            ->with('status', [
+                'message' => 'Succesfuly detached!',
+                'type' => 'success',
+            ]);
     }
 
-    public function accept(AcceptRequest $request, int $id)
+    /**
+     * @param AcceptRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function accept(AcceptRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
         $userId = $request->get('user_id');
@@ -214,13 +297,22 @@ class TeamsController extends Controller
 
         return redirect()
             ->back()
-            ->with('status', 'Succesfuly applied!');
+            ->with('status', [
+                'message' => 'Succesfuly applied!',
+                'type' => 'success',
+            ]);
     }
 
-    public function reject(RejectRequest $request, int $id)
+    /**
+     * @param RejectRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function reject(RejectRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
         $userId = $request->get('user_id');
@@ -231,22 +323,21 @@ class TeamsController extends Controller
 
         return redirect()
             ->back()
-            ->with('status', 'Succesfuly applied!');
+            ->with('status', [
+                'message' => 'Succesfuly rejected!',
+                'type' => 'success',
+            ]);
     }
 
-    public function search()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(): View
     {
         $teams = Team::search(request('search'))->paginate(10);
 
         return view('teams.index', [
             'teams' => $teams,
         ]);
-    }
-
-    private function filterArray($value)
-    {
-        return array_filter(
-            array_values($value)[0] ?? []
-        );
     }
 }

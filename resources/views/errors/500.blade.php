@@ -1,7 +1,10 @@
-<div class="content">
-    <div class="title">Something went wrong.</div>
-@unless(empty($sentryID))
-    <!-- Sentry JS SDK 2.1.+ required -->
+@extends('layouts.error')
+
+@section('content')
+    <h3>Ошибка сервера</h3>
+    {{ $exception->getMessage() }}
+
+    @unless(empty($sentryID))
         <script src="https://cdn.ravenjs.com/3.3.0/raven.min.js"></script>
 
         <script>
@@ -11,4 +14,4 @@
             });
         </script>
     @endunless
-</div>
+@endsection

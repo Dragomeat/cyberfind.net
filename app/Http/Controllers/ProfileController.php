@@ -1,24 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Profile\UpdateRequest;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\View\View;
 
+/**
+ * Class ProfileController
+ * @package App\Http\Controllers
+ */
 class ProfileController extends Controller
 {
+
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(int $id): View
     {
         /**
-         * @var User
+         * @var User $user
          */
         $user = User::findOrFail($id);
 
@@ -32,15 +38,14 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         /**
-         * @var User
+         * @var User $user
          */
         $user = User::findOrFail($id);
 
@@ -53,22 +58,24 @@ class ProfileController extends Controller
         ]);
     }
 
+
     /**
      * @param UpdateRequest $request
      * @param Filesystem $fs
-     * @param $id
-     * @return RedirectResponse
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateRequest $request, Filesystem $fs, $id)
+    public function update(UpdateRequest $request, Filesystem $fs, int $id): RedirectResponse
     {
         /**
-         * @var User
+         * @var User $user
          */
         $user = User::findOrFail($id);
 
         $this->authorize('update', $user);
 
-        $fields = $request->only([
+        $fields = $request->intersect([
             'login',
             'first_name',
             'last_name',
@@ -101,8 +108,16 @@ class ProfileController extends Controller
 //            $user->avatar_rendered = false;
 //        }
 
-        $user->save();
+        if ($user->save()) {
+            return redirect()->back();
+        }
 
-        return redirect()->back();
+
+        return redirect()->back()->with([
+            'status' => [
+                'message' => 'Произошла неизвестная ошибка! Мы уже с ней разбираемся :)',
+                'type' => 'error'
+            ],
+        ]);
     }
 }

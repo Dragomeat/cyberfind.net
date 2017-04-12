@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\View\View;
@@ -7,32 +9,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
+/**
+ * Class ResetPasswordController
+ * @package App\Http\Controllers\Auth
+ */
 class ResetPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
-
     use ResetsPasswords;
 
     /**
-     * Where to redirect users after resetting their password.
-     *
      * @var string
      */
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * ResetPasswordController constructor.
      */
     public function __construct()
     {
@@ -42,9 +33,9 @@ class ResetPasswordController extends Controller
     /**
      * @param Request $request
      * @param null $token
-     * @return View
+     * @return \Illuminate\View\View
      */
-    public function showResetForm(Request $request, $token = null)
+    public function showResetForm(Request $request, $token = null): View
     {
         return view('auth.passwords.reset')->with([
                 'token' => $token,
