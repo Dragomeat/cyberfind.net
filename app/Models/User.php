@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Traits\GetsUrlSocialNetworks;
+use Laravel\Scout\Searchable;
 use App\Models\User\GravatarSupportable;
+use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\GetsUrlSocialNetworks;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Scout\Searchable;
 use Service\ImageUploader\Resolvers\GravatarSupports;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * Class User
- * @package App\Models
+ * Class User.
  */
 class User extends Authenticatable implements GravatarSupports
 {
