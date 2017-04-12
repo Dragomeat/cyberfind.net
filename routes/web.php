@@ -44,10 +44,10 @@ Route::get('search/users/{search}', function (string $search) {
 })->name('search.index');
 
 Route::get('about', 'AboutController@about')->name('about');
-Route::get('partners','AboutController@partners')->name('about.partners');
+Route::get('partners', 'AboutController@partners')->name('about.partners');
 
-Route::get('contacts','AboutController@contacts')->name('about.contacts');
-Route::post('feedback','AboutController@feedback')->name('about.feedback');
+Route::get('contacts', 'AboutController@contacts')->name('about.contacts');
+Route::post('feedback', 'AboutController@feedback')->name('about.feedback');
 
 Route::get('teams/search', 'TeamsController@search')
     ->name('teams.search');

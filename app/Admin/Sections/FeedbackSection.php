@@ -4,22 +4,20 @@ declare(strict_types=1);
 
 namespace App\Admin\Sections;
 
+use AdminForm;
 use AdminColumn;
 use AdminDisplay;
-use AdminDisplayFilter;
-use AdminForm;
 use AdminFormElement;
+use AdminDisplayFilter;
 use App\Models\Feedback;
-use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
+use SleepingOwl\Admin\Contracts\Initializable;
 
 /**
- * Class FeedbackSection
- * @package App\Admin\Sections
+ * Class FeedbackSection.
  */
 class FeedbackSection extends Section implements Initializable
 {
-
     /**
      * Initialize class.
      */

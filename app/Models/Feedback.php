@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class Feedback
- * @package App\Models
+ * Class Feedback.
  */
 class Feedback extends Model
 {

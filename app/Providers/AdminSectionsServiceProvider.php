@@ -8,8 +8,7 @@ use SleepingOwl\Admin\Admin;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
 
 /**
- * Class AdminSectionsServiceProvider
- * @package App\Providers
+ * Class AdminSectionsServiceProvider.
  */
 class AdminSectionsServiceProvider extends ServiceProvider
 {
