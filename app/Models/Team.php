@@ -104,7 +104,7 @@ class Team extends Model
     /**
      * @return array|null
      */
-    public function getLinksAttribute(): ?array
+    public function getLinksAttribute()
     {
         if (null === $contacts = $this->attributes['contacts']) {
             return null;
@@ -116,7 +116,7 @@ class Team extends Model
     /**
      * @return array|null
      */
-    public function getSocialsAttribute(): ?array
+    public function getSocialsAttribute()
     {
         if (null === $contacts = $this->attributes['contacts']) {
             return null;
@@ -128,7 +128,7 @@ class Team extends Model
     /**
      * @return User
      */
-    public function getCommanderAttribute(): User
+    public function getCommanderAttribute()
     {
         return $this->getUsersWhereRole('commander')->first();
     }
