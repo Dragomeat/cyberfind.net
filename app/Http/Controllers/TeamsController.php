@@ -8,7 +8,6 @@ use App\Models\Map;
 use App\Models\Team;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Team\CreateRequest;
 use App\Http\Requests\Team\UpdateRequest;
 use App\Http\Requests\Team\Join\JoinRequest;

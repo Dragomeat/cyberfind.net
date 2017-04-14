@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\FeedbackRequest;
 
 /**
