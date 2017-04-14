@@ -26,7 +26,7 @@ $factory->defineAs(App\Models\User::class, 'users', function (Faker\Generator $f
     return [
         'login' => $faker->name,
         'email' => $faker->email,
-        'password' => bcrypt((string)random_int(0, PHP_INT_MAX)),
+        'password' => bcrypt((string) random_int(0, PHP_INT_MAX)),
         'is_confirmed' => true,
     ];
 });

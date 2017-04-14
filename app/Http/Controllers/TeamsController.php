@@ -41,7 +41,7 @@ class TeamsController extends Controller
     public function show(int $id): View
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -112,7 +112,7 @@ class TeamsController extends Controller
     public function update(UpdateRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -183,7 +183,7 @@ class TeamsController extends Controller
             'city',
             'country',
             'goal',
-            'goal_text'
+            'goal_text',
         ]);
 
         $maps = [];
@@ -206,7 +206,7 @@ class TeamsController extends Controller
         }
 
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::create($attributes);
 
@@ -230,7 +230,7 @@ class TeamsController extends Controller
     public function join(JoinRequest $request, Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
@@ -256,7 +256,7 @@ class TeamsController extends Controller
     public function leave(Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team $team
+         * @var Team
          */
         $team = Team::findOrFail($id);
 
