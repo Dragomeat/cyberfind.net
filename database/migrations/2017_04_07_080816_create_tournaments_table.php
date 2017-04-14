@@ -21,7 +21,7 @@ class CreateTournamentsTable extends Migration
             $table->string('link');
             $table->mediumText('description');
 
-            /**
+            /*
              * Money
              */
             $table->string('prize_fund');
@@ -30,7 +30,7 @@ class CreateTournamentsTable extends Migration
             $table->string('logotype')->nullable();
             $table->string('logotype_rendered')->default(false);
 
-            /**
+            /*
              * Maps in json
              * 'mirage',
              * 'nuke',
