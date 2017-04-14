@@ -56,6 +56,7 @@ class Handler extends ExceptionHandler
 
         return response()->view('errors.500', [
             'sentryID' => $this->sentryID,
+            'exception' => $exception,
         ], 500);
     }
 
