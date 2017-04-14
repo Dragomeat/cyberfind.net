@@ -17,7 +17,7 @@ class AboutController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function about(): View
+    public function about()
     {
         return view('about.index');
     }
@@ -25,7 +25,7 @@ class AboutController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function partners(): View
+    public function partners()
     {
         return view('about.partners');
     }
@@ -33,7 +33,7 @@ class AboutController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function contacts(): View
+    public function contacts()
     {
         return view('about.contacts');
     }
@@ -42,7 +42,7 @@ class AboutController extends Controller
      * @param FeedbackRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function feedback(FeedbackRequest $request): RedirectResponse
+    public function feedback(FeedbackRequest $request)
     {
         Feedback::create(
             $request->only([

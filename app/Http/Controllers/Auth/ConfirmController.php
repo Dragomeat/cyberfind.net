@@ -23,7 +23,7 @@ class ConfirmController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function confirm(Guard $guard, JWTInterface $jwt, string $token): RedirectResponse
+    public function confirm(Guard $guard, JWTInterface $jwt, string $token)
     {
         $email = Arr::get($jwt->decode($token), 'email');
 

@@ -19,7 +19,7 @@ class ProfileController extends Controller
      * @param int $id
      * @return \Illuminate\View\View
      */
-    public function show(int $id): View
+    public function show(int $id)
     {
         /**
          * @var User
@@ -40,7 +40,7 @@ class ProfileController extends Controller
      * @return \Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(int $id): View
+    public function edit(int $id)
     {
         /**
          * @var User
@@ -63,7 +63,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateRequest $request, Filesystem $fs, int $id): RedirectResponse
+    public function update(UpdateRequest $request, Filesystem $fs, int $id)
     {
         /**
          * @var User

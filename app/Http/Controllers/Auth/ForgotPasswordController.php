@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function showLinkRequestForm(): View
+    public function showLinkRequestForm()
     {
         return view('auth.passwords.email');
     }
@@ -40,7 +40,7 @@ class ForgotPasswordController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function sendResetLinkEmail(RestoreRequest $request): RedirectResponse
+    public function sendResetLinkEmail(RestoreRequest $request)
     {
         User::whereEmail($request->get('email'))
             ->whereIsConfirmed(true)

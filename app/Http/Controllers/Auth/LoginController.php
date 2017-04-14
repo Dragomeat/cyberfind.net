@@ -30,7 +30,7 @@ class LoginController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function showLoginForm(): View
+    public function showLoginForm()
     {
         return view('auth.login');
     }
@@ -61,7 +61,7 @@ class LoginController extends Controller
      * @param User $user
      * @return RedirectResponse|null
      */
-    protected function authenticated(Request $request, User $user): ?RedirectResponse
+    protected function authenticated(Request $request, User $user)
     {
         if (!$user->is_confirmed) {
             $this->logout($request);

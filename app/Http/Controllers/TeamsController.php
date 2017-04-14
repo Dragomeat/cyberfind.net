@@ -24,7 +24,7 @@ class TeamsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function index()
     {
         $teams = Team::paginate(10);
 
@@ -36,8 +36,9 @@ class TeamsController extends Controller
     /**
      * @param int $id
      * @return \Illuminate\View\View
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function show(int $id): View
+    public function show(int $id)
     {
         /**
          * @var Team
@@ -66,7 +67,7 @@ class TeamsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function create(): View
+    public function create()
     {
         return view('teams.create', [
             'maps' => Team\Map::getAll(),
@@ -76,9 +77,10 @@ class TeamsController extends Controller
     /**
      * @param int $id
      * @return \Illuminate\View\View
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(int $id): View
+    public function edit(int $id)
     {
         /**
          * @var Team
@@ -107,7 +109,7 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateRequest $request, int $id): RedirectResponse
+    public function update(UpdateRequest $request, int $id)
     {
         /**
          * @var Team
@@ -185,7 +187,7 @@ class TeamsController extends Controller
      * @param Authenticatable $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateRequest $request, Authenticatable $user): RedirectResponse
+    public function store(CreateRequest $request, Authenticatable $user)
     {
         $payload = $request->only([
             'title',
@@ -232,7 +234,7 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function join(JoinRequest $request, Authenticatable $user, int $id): RedirectResponse
+    public function join(JoinRequest $request, Authenticatable $user, int $id)
     {
         /**
          * @var Team
@@ -257,7 +259,7 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function leave(Authenticatable $user, int $id): RedirectResponse
+    public function leave(Authenticatable $user, int $id)
     {
         /**
          * @var Team
@@ -282,7 +284,7 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function accept(AcceptRequest $request, int $id): RedirectResponse
+    public function accept(AcceptRequest $request, int $id)
     {
         /**
          * @var Team
@@ -308,7 +310,7 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function reject(RejectRequest $request, int $id): RedirectResponse
+    public function reject(RejectRequest $request, int $id)
     {
         /**
          * @var Team
@@ -331,7 +333,7 @@ class TeamsController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(): View
+    public function search()
     {
         $teams = Team::search(request('search'))->paginate(10);
 

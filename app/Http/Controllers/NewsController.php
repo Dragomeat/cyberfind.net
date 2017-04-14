@@ -15,7 +15,7 @@ class NewsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function index()
     {
         return view('news.index', [
             'news' => News::latestPublished()->simplePaginate(10),
@@ -27,7 +27,7 @@ class NewsController extends Controller
      * @return \Illuminate\View\View
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function show(string $slug): View
+    public function show(string $slug)
     {
         $news = News::whereSlug($slug)->firstOrFail();
 

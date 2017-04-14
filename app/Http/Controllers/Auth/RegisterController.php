@@ -36,7 +36,7 @@ class RegisterController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function showRegistrationForm(): View
+    public function showRegistrationForm()
     {
         return view('auth.register');
     }
@@ -45,7 +45,7 @@ class RegisterController extends Controller
      * @param RegisterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function register(RegisterRequest $request): RedirectResponse
+    public function register(RegisterRequest $request)
     {
         event(new Registered($user = $this->create($request->all())));
 
@@ -61,7 +61,7 @@ class RegisterController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function create(array $data): Authenticatable
+    protected function create(array $data)
     {
         return User::create([
             'login' => $data['login'],

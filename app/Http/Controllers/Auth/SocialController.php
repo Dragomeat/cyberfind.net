@@ -22,7 +22,7 @@ class SocialController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function login($provider): RedirectResponse
+    public function login($provider)
     {
         $this->validateProvider($provider);
 
@@ -47,7 +47,7 @@ class SocialController extends Controller
      * @throws \Illuminate\Database\QueryException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function callback(SocialService $service, string $provider): RedirectResponse
+    public function callback(SocialService $service, string $provider)
     {
         $this->validateProvider($provider);
 
