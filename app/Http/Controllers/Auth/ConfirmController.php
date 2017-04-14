@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\RedirectResponse;
 use Tymon\JWTAuth\Providers\JWT\JWTInterface;
 
 /**
