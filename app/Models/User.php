@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Laravel\Scout\Searchable;
-use App\Models\User\GravatarSupportable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\GetsUrlSocialNetworks;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Service\ImageUploader\Resolvers\GravatarSupports;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User.
  */
-class User extends Authenticatable implements GravatarSupports
+class User extends Authenticatable
 {
-    use Notifiable, Searchable, GravatarSupportable, GetsUrlSocialNetworks;
+    use Notifiable, Searchable, GetsUrlSocialNetworks;
 
     /**
      * The attributes that are mass assignable.
@@ -65,6 +63,14 @@ class User extends Authenticatable implements GravatarSupports
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    /**
      * @return bool
      */
     public function hasAvatar(): bool
@@ -104,5 +110,18 @@ class User extends Authenticatable implements GravatarSupports
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarFieldName(): string
+    {
+        return 'avatar';
+    }
+
+    public function getAvatarRenderedFieldName(): string
+    {
+        return 'avatar_rendered';
     }
 }

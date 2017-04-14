@@ -65,3 +65,7 @@ Route::post('teams/{team}/leave', 'TeamsController@leave')
     ->name('teams.leave');
 
 Route::resource('teams', 'TeamsController');
+
+Route::resource('tournaments', 'TournamentController', [
+    'only' => ['index', 'show'],
+]);

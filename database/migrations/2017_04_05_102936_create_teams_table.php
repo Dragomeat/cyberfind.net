@@ -20,31 +20,16 @@ class CreateTeamsTable extends Migration
             $table->integer('age_max')
                 ->nullable();
             $table->string('city');
+            $table->string('country');
+
             $table->string('goal');
             $table->mediumText('goal_text');
-            $table->mediumText('join_additional')
-                ->nullable();
-            $table->integer('command_limit')
+
+            $table->json('join_requirements')
                 ->nullable();
             $table->json('contacts')
                 ->nullable();
             $table->timestamps();
-        });
-
-        Schema::create('team_map', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('team_id')
-                ->unsigned();
-            $table->enum('map', [
-                'mirage',
-                'nuke',
-                'train',
-                'dust2',
-                'cobble',
-                'overpass',
-                'cache',
-                'inferno',
-            ]);
         });
 
         Schema::create('team_user', function (Blueprint $table) {
@@ -75,6 +60,8 @@ class CreateTeamsTable extends Migration
                 ->unsigned();
             $table->integer('tournament_id')
                 ->unsigned();
+            $table->json('settings')
+                ->nullable();
         });
     }
 
@@ -86,7 +73,6 @@ class CreateTeamsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('teams');
-        Schema::dropIfExists('team_map');
         Schema::dropIfExists('team_user');
         Schema::dropIfExists('team_tournament');
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -57,6 +58,28 @@ class Team extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function likes(): MorphMany
+    {
+        return $this->morphMany(Like::class, 'material');
+    }
+
+
+//    public function maps(): HasMany
+//    {
+//        return $this->hasMany(Map::class);
+//    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tournaments(): BelongsToMany
+    {
+        return $this->belongsToMany(Tournament::class);
+    }
+
+    /**
      * @return Collection
      */
     public function getPendingUsers(): Collection
@@ -74,22 +97,6 @@ class Team extends Model
         return $this->getUsersWhereStatus($status)
             ->where('id', $id)
             ->first();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function maps(): HasMany
-    {
-        return $this->hasMany(Map::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tournaments(): BelongsToMany
-    {
-        return $this->belongsToMany(Tournament::class);
     }
 
     /**

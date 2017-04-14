@@ -65,6 +65,20 @@
                                 @endif
 
                                 <div class="c_search-char__item">
+                                    <div class="c_search-char__pers-name">{{ trans('team.edit.country') }}</div>
+                                    <input type="text" name="country" class="c_search-char__pers-box"
+                                           value="{{ old('country') }}" required>
+                                </div>
+
+                                @if($errors->has('country'))
+                                    <div class="c_search-char__item" style="border-color: red;">
+                                        <input type="text" class="c_search-char__pers-box"
+                                               style="border-color: red; color: red;"
+                                               value="{{ $errors->first('country') }}" readonly/>
+                                    </div>
+                                @endif
+
+                                <div class="c_search-char__item">
                                     <div class="c_search-char__pers-name">{{ trans('team.edit.goal') }}</div>
                                     <input type="text" name="goal" class="c_search-char__pers-box"
                                            value="{{  old('goal')  }}" required>

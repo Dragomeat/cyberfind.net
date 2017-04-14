@@ -17,11 +17,21 @@ class CreateTournamentsTable extends Migration
             $table->increments('id');
             $table->string('title')
                 ->index();
+            $table->string('organizer');
+            $table->string('link');
             $table->mediumText('description');
-            $table->json('map')->nullable();
-            $table->integer('max_teams')
-                ->default(256);
-            /*
+
+            /**
+             * Money
+             */
+            $table->string('prize_fund');
+            $table->string('entrance_fee');
+
+            $table->string('logotype')->nullable();
+            $table->string('logotype_rendered')->default(false);
+
+            /**
+             * Maps in json
              * 'mirage',
              * 'nuke',
              * 'train',
@@ -31,7 +41,10 @@ class CreateTournamentsTable extends Migration
              * 'cache',
              * 'inferno'
              */
+            $table->json('maps')->nullable();
+
             $table->timestamp('holding_at');
+            $table->timestamp('qualification_at');
             $table->timestamps();
         });
     }

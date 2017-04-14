@@ -15,32 +15,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('login');
-            $table->string('email')->unique();
+            $table->string('login')
+                ->index();
+            $table->string('email')
+                ->index()
+                ->unique();
             $table->string('password');
            // $table->string('avatar')->nullable();
            // $table->boolean('avatar_rendered')->default(false);
 
-            $table->integer('age')->nullable();
-            $table->enum('gender', [
-                'female',
-                'male',
-                'unknown',
-            ])->default('unknown');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('middle_name')->nullable();
-            $table->enum('country', [
-                'ru',
-                'ua',
-                'us',
-                'cn',
-                'unknown',
-            ])->default('unknown');
-            $table->string('city')->nullable();
-            $table->mediumText('about')->nullable();
-            $table->string('skype')->nullable();
-            $table->string('telephone')->nullable();
+            $table->json('personal')
+                ->nullable();
+            $table->json('contacts')
+                ->nullable();
             $table->boolean('is_confirmed')->default(false);
             $table->enum('role', [
                 'user',

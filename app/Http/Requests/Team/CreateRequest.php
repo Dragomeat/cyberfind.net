@@ -29,6 +29,7 @@ class CreateRequest extends FormRequest
             'title' => 'string|unique:teams,title|required',
             'age' => 'required',
             'city' => 'string|required',
+            'country' => 'string|required',
             'goal' => 'string|required',
             'goal_text' => 'string|required',
             'join_additional' => 'string|required',

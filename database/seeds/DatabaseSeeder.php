@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(\App\Models\User::class, 'users_admin')->create();
+        factory(\App\Models\Tournament::class, 59)->create();
     }
 }

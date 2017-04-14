@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Map;
 use App\Models\Team;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -23,6 +22,7 @@ class TeamsController extends Controller
 {
     /**
      * @return \Illuminate\View\View
+     * @throws \InvalidArgumentException
      */
     public function index(): View
     {
@@ -36,11 +36,12 @@ class TeamsController extends Controller
     /**
      * @param int $id
      * @return \Illuminate\View\View
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function show(int $id): View
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -105,12 +106,13 @@ class TeamsController extends Controller
      * @param UpdateRequest $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UpdateRequest $request, int $id): RedirectResponse
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -170,17 +172,6 @@ class TeamsController extends Controller
     }
 
     /**
-     * @param $value
-     * @return array
-     */
-    private function filterArray($value): array
-    {
-        return array_filter(
-            array_values($value)[0] ?? []
-        );
-    }
-
-    /**
      * @param CreateRequest $request
      * @param Authenticatable $user
      * @return \Illuminate\Http\RedirectResponse
@@ -190,9 +181,9 @@ class TeamsController extends Controller
         $payload = $request->only([
             'title',
             'city',
+            'country',
             'goal',
-            'goal_text',
-            'join_additional',
+            'goal_text'
         ]);
 
         $maps = [];
@@ -205,6 +196,9 @@ class TeamsController extends Controller
                 'socials' => $this->filterArray($request->intersect('socials')),
                 'contacts' => $this->filterArray($request->intersect('contacts')),
             ]),
+            'join_requirements' => json_encode([
+                'text' => $request->only('join_additional'),
+            ]),
         ]);
 
         while ($map = array_shift($inputMaps)) {
@@ -212,7 +206,7 @@ class TeamsController extends Controller
         }
 
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::create($attributes);
 
@@ -230,12 +224,13 @@ class TeamsController extends Controller
      * @param Authenticatable $user
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function join(JoinRequest $request, Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -255,12 +250,13 @@ class TeamsController extends Controller
      * @param Authenticatable $user
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function leave(Authenticatable $user, int $id): RedirectResponse
     {
         /**
-         * @var Team
+         * @var Team $team
          */
         $team = Team::findOrFail($id);
 
@@ -338,5 +334,16 @@ class TeamsController extends Controller
         return view('teams.index', [
             'teams' => $teams,
         ]);
+    }
+
+    /**
+     * @param $value
+     * @return array
+     */
+    private function filterArray($value): array
+    {
+        return array_filter(
+            array_values($value)[0] ?? []
+        );
     }
 }

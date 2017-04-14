@@ -19,10 +19,10 @@ class SocialController extends Controller
 {
     /**
      * @param $provider
-     * @return \Illuminate\Http\RedirectResponse
+     * @return mixed
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function login($provider): RedirectResponse
+    public function login($provider)
     {
         $this->validateProvider($provider);
 
