@@ -43,7 +43,7 @@ class NewsSection extends Section implements Initializable
      */
     public function getTitle()
     {
-        return trans('admin_news.title');
+        return 'Новости';
     }
 
     /**
@@ -51,12 +51,12 @@ class NewsSection extends Section implements Initializable
      */
     public function getCreateTitle()
     {
-        return trans('admin_news.create');
+        return 'Новая новость';
     }
 
     public function getEditTitle()
     {
-        return trans('admin_news.edit');
+        return 'Редактирование новости';
     }
 
     /**
@@ -70,11 +70,11 @@ class NewsSection extends Section implements Initializable
             ->setHtmlAttribute('class', 'table-primary')
             ->setColumns(
                 AdminColumn::text('id', '#')->setWidth('30px'),
-                AdminColumn::link('title', 'Title')->setWidth('100px'),
-                AdminColumn::text('slug', 'Slug'),
-                AdminColumn::text('status', 'Status'),
-                AdminColumn::datetime('published_at', 'Published at'),
-                AdminColumn::datetime('created_at', 'Created at')
+                AdminColumn::link('title', 'Заголовок')->setWidth('100px'),
+                AdminColumn::text('slug', 'Слаг'),
+                AdminColumn::text('status', 'Статус'),
+                AdminColumn::datetime('published_at', 'Опубликовано в'),
+                AdminColumn::datetime('created_at', 'Создано в')
             )->paginate(20);
     }
 
@@ -87,22 +87,22 @@ class NewsSection extends Section implements Initializable
     public function onEdit(int $id, bool $create = false)
     {
         return AdminForm::panel()->addBody(
-            AdminFormElement::text('title', 'Title')->required(),
+            AdminFormElement::text('title', 'Заголовок')->required(),
             AdminFormElement::hidden('user_id')->mutateValue(function () {
                 return \Auth::id();
             }),
             AdminFormElement::hidden('status')->mutateValue(function () {
                 return 'published';
             }), //TODO
-            AdminFormElement::file('illustration', 'Illustration'),
-            AdminFormElement::text('slug', 'Slug'),
-            AdminFormElement::wysiwyg('content_source', 'Content', 'simplemde')
+            AdminFormElement::file('illustration', 'Иллюстрация'),
+            AdminFormElement::text('slug', 'Слаг (генерируется автоматически)'),
+            AdminFormElement::wysiwyg('content_source', 'Контент', 'simplemde')
                 ->disableFilter()
                 ->required(),
-            AdminFormElement::multiselect('tags', 'Tags')
+            AdminFormElement::multiselect('tags', 'Тэги')
                 ->setModelForOptions(Tags::class)
                 ->setDisplay('name'),
-            AdminFormElement::datetime('published_at', 'Publish news')
+            AdminFormElement::datetime('published_at', 'Когда опубликовать новость?')
                 ->setCurrentDate()
         );
     }

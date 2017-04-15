@@ -4,12 +4,7 @@
     <div class="b_inb b_inb-main">
         <div class="c_box">
             <div class="c_main_top">
-                <div class="c_main_top-btn c_gamebtn">
-                    <a href="#" class="c_gamebtn-csgo"></a>
-                    <a href="#" class="c_gamebtn-lol"></a>
-                    <a href="#" class="c_gamebtn-dota2"></a>
-                </div>
-                <div class="c_main_top-title">
+                <div class="c_main_top-title" style="padding-right: 0;">
                     <h1>Cyber<span>find</span></h1>
                     <h2>Сервис по подбору игроков и команд</h2>
                 </div>
@@ -20,10 +15,10 @@
                     <div class="c_main_nav-title">Новости</div>
                     <div class="c_main_nav-list">
                         <ul>
-                            <li><a href="#">Анонсы</a></li>
-                            <li><a href="#">Итоги турниров</a></li>
-                            <li><a href="#">Трансферы</a></li>
-                            <li><a href="#">Событие дня</a></li>
+                            <li><a href="{{ route('news.tag', 1) }}">Анонсы</a></li>
+                            <li><a href="{{ route('news.tag', 2) }}">Итоги турниров</a></li>
+                            <li><a href="{{ route('news.tag', 3) }}">Трансферы</a></li>
+                            <li><a href="{{ route('news.tag', 4) }}">Событие дня</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,8 +26,8 @@
                     <div class="c_main_nav-title">Поиск</div>
                     <div class="c_main_nav-list">
                         <ul>
-                            <li><a href="#">Поиск игрока</a></li>
-                            <li><a href="#">Поиск команды</a></li>
+                            <li><a href="{{ route('profile.search') }}">Поиск игрока</a></li>
+                            <li><a href="{{ route('teams.search') }}">Поиск команды</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,26 +35,25 @@
                     <div class="c_main_nav-title">турниры</div>
                     <div class="c_main_nav-list">
                         <ul>
-                            <li><a href="#">Профессиональные</a></li>
-                            <li><a href="#">Любительские</a></li>
+                            <li>
+                                <a href="#">Профессиональные</a>
+                            </li>
+                            <li>
+                                <a href="#">Любительские</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="c_main-slider">
-                <div class="c_main-slider-item"><img src="images/bg-main-slider.jpg" alt="slider"></div>
+                <div class="c_main-slider-item"><img src="/images/bg-main-slider.jpg" alt="slider"></div>
             </div>
 
             <div class="c_main_info">
                 <div class="c_main_info-news c_main_info-tabs">
                     <div class="c_main_info-top">
                         <div class="c_main_info-title">Новости</div>
-                        <div class="c_gamebtn c_main_info-btn">
-                            <a href="#" class="c_gamebtn-csgo"></a>
-                            <a href="#" class="c_gamebtn-lol"></a>
-                            <a href="#" class="c_gamebtn-dota2"></a>
-                        </div>
                     </div>
                     <ul class="c_main_info-tabs__caption">
                         <li class="active">Анонсы</li>
@@ -70,7 +64,7 @@
                     <div class="c_main_info-newsbox">
                         <div class="c_main_info-tabs__content active c_main_info-newslist">
                             <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
                                 <div class="c_main_info-newsdop">
                                     <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
                                     <div class="c_main_info-newsdata">
@@ -82,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
                                 <div class="c_main_info-newsdop">
                                     <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
                                     <div class="c_main_info-newsdata">
@@ -94,34 +88,7 @@
                                 </div>
                             </div>
                             <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
-                                <div class="c_main_info-newsdop">
-                                    <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
-                                    <div class="c_main_info-newsdata">
-                                        <div class="c_main_info-newscomm">10</div>
-                                        <div class="c_main_info-newslike">10</div>
-                                        <div class="c_main_info-newsdislike">2</div>
-                                        <a href="#" class="c_main_info-newsmore"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="c_main_info-tabs__content c_main_info-newslist">
-                            <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
-                                <div class="c_main_info-newsdop">
-                                    <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
-                                    <div class="c_main_info-newsdata">
-                                        <div class="c_main_info-newscomm">10</div>
-                                        <div class="c_main_info-newslike">10</div>
-                                        <div class="c_main_info-newsdislike">2</div>
-                                        <a href="#" class="c_main_info-newsmore"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
                                 <div class="c_main_info-newsdop">
                                     <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
                                     <div class="c_main_info-newsdata">
@@ -136,7 +103,19 @@
 
                         <div class="c_main_info-tabs__content c_main_info-newslist">
                             <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsdop">
+                                    <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
+                                    <div class="c_main_info-newsdata">
+                                        <div class="c_main_info-newscomm">10</div>
+                                        <div class="c_main_info-newslike">10</div>
+                                        <div class="c_main_info-newsdislike">2</div>
+                                        <a href="#" class="c_main_info-newsmore"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c_main_info-newsitem">
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
                                 <div class="c_main_info-newsdop">
                                     <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
                                     <div class="c_main_info-newsdata">
@@ -151,7 +130,22 @@
 
                         <div class="c_main_info-tabs__content c_main_info-newslist">
                             <div class="c_main_info-newsitem">
-                                <div class="c_main_info-newsthumb"><a href="#"><img src="images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
+                                <div class="c_main_info-newsdop">
+                                    <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
+                                    <div class="c_main_info-newsdata">
+                                        <div class="c_main_info-newscomm">10</div>
+                                        <div class="c_main_info-newslike">10</div>
+                                        <div class="c_main_info-newsdislike">2</div>
+                                        <a href="#" class="c_main_info-newsmore"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="c_main_info-tabs__content c_main_info-newslist">
+                            <div class="c_main_info-newsitem">
+                                <div class="c_main_info-newsthumb"><a href="#"><img src="/images/bg-news-big.jpg" alt="main news"></a></div>
                                 <div class="c_main_info-newsdop">
                                     <div class="c_main_info-newstxt">К участию в турнире по спортивному пейнтболу среди первокурсников ТулГУ будут допущены студенты первого курса ТулГУ, на основании личного заявления.</div>
                                     <div class="c_main_info-newsdata">
@@ -184,11 +178,6 @@
                                     <li class="active">Текущие</li>
                                     <li>Будущие</li>
                                 </ul>
-                                <div class="c_gamebtn c_main_info-btn c_main_info-tourn-btn">
-                                    <a href="#" class="c_gamebtn-csgo"></a>
-                                    <a href="#" class="c_gamebtn-lol"></a>
-                                    <a href="#" class="c_gamebtn-dota2"></a>
-                                </div>
                             </div>
 
                             <div class="c_main_info-tourn-table">
@@ -283,11 +272,6 @@
                                     <li class="active">Текущие</li>
                                     <li>Будущие</li>
                                 </ul>
-                                <div class="c_gamebtn c_main_info-btn c_main_info-tourn-btn">
-                                    <a href="#" class="c_gamebtn-csgo"></a>
-                                    <a href="#" class="c_gamebtn-lol"></a>
-                                    <a href="#" class="c_gamebtn-dota2"></a>
-                                </div>
                             </div>
 
                             <div class="c_main_info-tourn-table">

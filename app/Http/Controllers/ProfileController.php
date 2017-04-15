@@ -15,6 +15,18 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class ProfileController extends Controller
 {
     /**
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
+    public function index()
+    {
+        $users = User::simplePaginate(10);
+
+        return view('profile.index', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
      * @param int $id
      * @return \Illuminate\View\View
      */
@@ -25,7 +37,7 @@ class ProfileController extends Controller
          */
         $user = User::findOrFail($id);
 
-        return view('profile.index', [
+        return view('profile.show', [
             'user' => $user,
             'countries' => User\Country::getAll(),
             'gender' => User\Gender::getAll(),
@@ -113,6 +125,18 @@ class ProfileController extends Controller
                 'message' => 'Произошла неизвестная ошибка! Мы уже с ней разбираемся :)',
                 'type' => 'error',
             ],
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search()
+    {
+        $users = User::search(request('search'))->paginate(10);
+
+        return view('profile.index', [
+            'users' => $users,
         ]);
     }
 }

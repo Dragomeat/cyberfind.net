@@ -43,3 +43,23 @@ $factory->define(\App\Models\Team::class, function (Faker\Generator $faker) {
         'command_limit' => $faker->numberBetween(5, 15),
     ];
 });
+
+$organizers = [
+    ['link' => 'https://www.faceit.com/ru', 'title' => 'FaceIt'],
+    ['link' => 'https://starladder.com/ru', 'title' => 'StarLadder'],
+];
+$factory->define(\App\Models\Tournament::class, function (\Faker\Generator $faker) use ($organizers) {
+    $organizer = $faker->randomElement($organizers);
+    $holdingAt = $faker->dateTimeBetween('-1 year', '+1 year');
+    $qualificationAt = $faker->dateTimeBetween($holdingAt->modify('-100 days'), $holdingAt->modify('-1 day'));
+    return [
+        'title' => $faker->sentences(1, true),
+        'organizer' => $organizer['title'],
+        'link' => $organizer['link'],
+        'description' => $faker->sentences(4, true),
+        'prize_fund' => $faker->numberBetween(1000, 100000),
+        'entrance_fee' => $faker->numberBetween(0, 10000),
+        'holding_at' => $holdingAt->format('Y-m-d'),
+        'qualification_at' => $qualificationAt->format('Y-m-d'),
+    ];
+});

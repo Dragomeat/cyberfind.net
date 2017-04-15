@@ -24,9 +24,7 @@ class ConfirmationObserver
      */
     public function created(User $user)
     {
-        $isSocial = $user->socials->count() > 0;
-
-        if (!$user->is_confirmed && !$isSocial) {
+        if (!$user->is_confirmed) {
             $confirmation = new ConfirmEmailNotification($user, $this->jwt);
             $user->notify($confirmation);
         }

@@ -31,9 +31,15 @@ Route::post('auth/register', 'Auth\RegisterController@register')->name('auth.reg
 Route::get('auth/confirmation/{token}', 'Auth\ConfirmController@confirm')
     ->name('auth.confirmation.confirm');
 
+Route::get('profile/search', 'ProfileController@search')
+    ->name('profile.search');
+
 Route::resource('profile', 'ProfileController', [
-    'only' => ['show', 'edit', 'update', 'delete'],
+    'only' => ['index', 'show', 'edit', 'update', 'delete'],
 ]);
+
+Route::get('news/tag/{tag}', 'NewsController@tag')
+    ->name('news.tag');
 
 Route::resource('news', 'NewsController', [
     'only' => ['index', 'show'],
@@ -65,3 +71,11 @@ Route::post('teams/{team}/leave', 'TeamsController@leave')
     ->name('teams.leave');
 
 Route::resource('teams', 'TeamsController');
+
+
+Route::get('tournaments/search', 'TournamentsController@search')
+    ->name('tournaments.search');
+
+Route::resource('tournaments', 'TournamentsController', [
+    'only' => ['index', 'show'],
+]);

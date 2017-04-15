@@ -50,7 +50,13 @@
                         <a href="{{ route('news.index') }}">Новости</a>
                     </li>
                     <li>
+                        <a href="{{ route('profile.index') }}">Игроки</a>
+                    </li>
+                    <li>
                         <a href="{{ route('teams.index') }}">Команды</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('tournaments.index') }}">Турниры</a>
                     </li>
                     <li>
                         <a href="{{ route('about') }}">О нас</a>

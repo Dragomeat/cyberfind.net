@@ -20,6 +20,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\News::class => \App\Admin\Sections\NewsSection::class,
         \App\Models\Tags::class => \App\Admin\Sections\TagsSection::class,
         \App\Models\Feedback::class => \App\Admin\Sections\FeedbackSection::class,
+        \App\Models\Tournament::class => \App\Admin\Sections\TournamentsSection::class,
     ];
 
     /**

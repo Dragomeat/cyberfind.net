@@ -29,6 +29,30 @@ class FeedbackSection extends Section implements Initializable
     }
 
     /**
+     * @return string
+     */
+    public function getIcon()
+    {
+        return 'fa fa-comments';
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return 'Обратная связь';
+    }
+
+    /**
+     * @return string
+     */
+    public function getEditTitle()
+    {
+        return 'Просмотр сообщения';
+    }
+
+    /**
      * @return \SleepingOwl\Admin\Contracts\Display\DisplayInterface
      */
     public function onDisplay()
@@ -40,10 +64,10 @@ class FeedbackSection extends Section implements Initializable
                     ->setValue(true)
             )
             ->setColumns(
-                AdminColumn::link('subject', 'Subject')->setWidth('50px'),
+                AdminColumn::link('subject', 'Тема')->setWidth('50px'),
                 AdminColumn::text('email', 'Email'),
-                AdminColumn::text('is_resolved', 'Resolved'),
-                AdminColumn::datetime('created_at', 'Created at')
+                AdminColumn::text('is_resolved', 'Вопрос решён?'),
+                AdminColumn::datetime('created_at', 'Создан в')
             )->paginate(20);
     }
 
@@ -55,11 +79,11 @@ class FeedbackSection extends Section implements Initializable
     public function onEdit(int $id, bool $create = false)
     {
         return AdminForm::panel()->addBody(
-            AdminFormElement::text('subject', 'Subject')->setReadOnly(true),
+            AdminFormElement::text('subject', 'Тема')->setReadOnly(true),
             AdminFormElement::text('email', 'Email')->setReadOnly(true),
-            AdminFormElement::textarea('message', 'Message')->setReadOnly(true),
+            AdminFormElement::textarea('message', 'Сообщение')->setReadOnly(true),
             AdminFormElement::checkbox('is_resolved', 'Resolved'),
-            AdminFormElement::datetime('created_at', 'Created at')->setReadOnly(true)
+            AdminFormElement::datetime('created_at', 'Создан в')->setReadOnly(true)
         );
     }
 }

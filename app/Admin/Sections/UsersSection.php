@@ -68,7 +68,7 @@ class UsersSection extends Section implements Initializable
             ->setHtmlAttribute('class', 'table-primary')
             ->setColumns(
                 AdminColumn::text('id', '#')->setWidth('30px'),
-                AdminColumn::link('login', 'Login')->setWidth('100px'),
+                AdminColumn::link('login', 'Логин')->setWidth('100px'),
                 AdminColumn::text('email', 'Email')
             )->paginate(20);
     }

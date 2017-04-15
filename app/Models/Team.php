@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -90,6 +91,14 @@ class Team extends Model
     public function tournaments(): BelongsToMany
     {
         return $this->belongsToMany(Tournament::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function likes(): MorphMany
+    {
+        return $this->morphMany(Like::class, 'material');
     }
 
     /**

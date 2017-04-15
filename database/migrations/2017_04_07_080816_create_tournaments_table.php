@@ -17,21 +17,28 @@ class CreateTournamentsTable extends Migration
             $table->increments('id');
             $table->string('title')
                 ->index();
+            $table->string('organizer');
+            $table->string('link');
             $table->mediumText('description');
-            $table->json('map')->nullable();
-            $table->integer('max_teams')
-                ->default(256);
+
+            $table->enum('type', [
+                'pro',
+                'amateur',
+            ])->default('pro');
+
             /*
-             * 'mirage',
-             * 'nuke',
-             * 'train',
-             * 'dust2',
-             * 'cobble',
-             * 'overpass',
-             * 'cache',
-             * 'inferno'
+             * Money
              */
+            $table->string('prize_fund');
+            $table->string('entrance_fee');
+            $table->string('logotype')->nullable();
+            $table->string('logotype_rendered')->default(false);
+
+            $table->float('rating')
+                ->default(0);
+
             $table->timestamp('holding_at');
+            $table->timestamp('qualification_at');
             $table->timestamps();
         });
     }

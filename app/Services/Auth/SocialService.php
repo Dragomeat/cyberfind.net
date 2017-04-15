@@ -49,6 +49,7 @@ class SocialService
             'password' => bcrypt(
                 Str::random()
             ),
+            'is_confirmed' => true,
         ]);
 
         $account->user()

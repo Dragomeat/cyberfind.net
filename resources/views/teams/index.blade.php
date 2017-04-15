@@ -47,9 +47,14 @@
                                         {{ $team->city }}
                                     </a>
                                  </div>
-                                <div class="c_search-line__td">
-                                    <div class="c_search-line__num-players">
-                                        <p> {{ count($team->users) }} / {{ $team->command_limit ?? 256 }} </p>
+                                <div class="c_search-line__td"><div class="c_search-line__num-players">
+                                     @for($i = 0; $i < 5; $i++)
+                                        @if($i < $team->getUsersWhereRole('main_part')->count())
+                                             <span class="c_search-line__num-active"></span>
+                                        @else
+                                             <span></span>
+                                        @endif
+                                     @endfor
                                     </div>
                                 </div>
                                 <div class="c_search-line__td">{{ $team->goal }}</div>

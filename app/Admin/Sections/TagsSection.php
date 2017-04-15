@@ -42,7 +42,7 @@ class TagsSection extends Section implements Initializable
      */
     public function getTitle()
     {
-        return trans('admin_news.title');
+        return 'Тэги для новостей';
     }
 
     /**
@@ -50,12 +50,12 @@ class TagsSection extends Section implements Initializable
      */
     public function getCreateTitle()
     {
-        return trans('admin_news.create');
+        return 'Новый тэг';
     }
 
     public function getEditTitle()
     {
-        return trans('admin_news.edit');
+        return 'Редактирование тэга';
     }
 
     /**
@@ -67,7 +67,7 @@ class TagsSection extends Section implements Initializable
             ->setHtmlAttribute('class', 'table-primary')
             ->setColumns(
                 AdminColumn::text('id', '#')->setWidth('30px'),
-                AdminColumn::link('name', 'Name')
+                AdminColumn::link('name', 'Имя тэга')
             )->paginate(20);
     }
 
@@ -79,7 +79,7 @@ class TagsSection extends Section implements Initializable
     public function onEdit(int $id)
     {
         return AdminForm::panel()->addBody(
-            AdminFormElement::text('name', 'Name')->required()
+            AdminFormElement::text('name', 'Имя тэга')->required()
         );
     }
 

@@ -35,4 +35,15 @@ class NewsController extends Controller
             'news' => $news,
         ]);
     }
+
+    public function tag(int $tag)
+    {
+        $tag = (int) $tag;
+
+        return view('news.index', [
+            'news' => News::whereHas('tags', function ($query) use ($tag) {
+                $query->where('tags.id', '=', $tag);
+            })->latestPublished()->simplePaginate(10),
+        ]);
+    }
 }

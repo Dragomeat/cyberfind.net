@@ -100,7 +100,7 @@ services:
         build: ./docker/phpmyadmin
         environment:
             PMA_ARBITRARY: 1
-            MYSQL_USER: fondbot
+            MYSQL_USER: cyberfind
             MYSQL_PASSWORD: secret
             MYSQL_ROOT_PASSWORD: root
         ports:
