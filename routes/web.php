@@ -72,7 +72,6 @@ Route::post('teams/{team}/leave', 'TeamsController@leave')
 
 Route::resource('teams', 'TeamsController');
 
-
 Route::get('tournaments/search', 'TournamentsController@search')
     ->name('tournaments.search');
 

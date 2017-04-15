@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Models\Tournament;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class TournamentsController extends Controller
 {
@@ -16,7 +16,7 @@ class TournamentsController extends Controller
         $tournaments = Tournament::simplePaginate(10);
 
         return view('tournaments.index', [
-            'tournaments' => $tournaments
+            'tournaments' => $tournaments,
         ]);
     }
 
@@ -30,7 +30,7 @@ class TournamentsController extends Controller
         $tournament = Tournament::findOrFail($id);
 
         return view('tournaments.show', [
-            'tournament' => $tournament
+            'tournament' => $tournament,
         ]);
     }
 

@@ -52,6 +52,7 @@ $factory->define(\App\Models\Tournament::class, function (\Faker\Generator $fake
     $organizer = $faker->randomElement($organizers);
     $holdingAt = $faker->dateTimeBetween('-1 year', '+1 year');
     $qualificationAt = $faker->dateTimeBetween($holdingAt->modify('-100 days'), $holdingAt->modify('-1 day'));
+
     return [
         'title' => $faker->sentences(1, true),
         'organizer' => $organizer['title'],

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * Class Tournament.
@@ -18,7 +17,7 @@ class Tournament extends Model
 
     protected $dates = [
         'holding_at',
-        'qualification_at'
+        'qualification_at',
     ];
 
     /**

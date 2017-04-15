@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace App\Admin\Sections;
 
 use App\Models\Tournament;
-use SleepingOwl\Admin\Factories\DisplayColumnFactory;
+use SleepingOwl\Admin\Section;
+use SleepingOwl\Admin\Factories\FormFactory;
+use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Factories\DisplayFactory;
 use SleepingOwl\Admin\Factories\FormElementFactory;
-use SleepingOwl\Admin\Factories\FormFactory;
-use SleepingOwl\Admin\Section;
-use SleepingOwl\Admin\Contracts\Initializable;
+use SleepingOwl\Admin\Factories\DisplayColumnFactory;
 use SleepingOwl\Admin\Contracts\Form as FormInterface;
 
 /**
- * Class TournamentsSection
- * @package App\Admin\Sections
+ * Class TournamentsSection.
  */
 class TournamentsSection extends Section implements Initializable
 {
@@ -58,7 +57,6 @@ class TournamentsSection extends Section implements Initializable
         return 'Редактирование турнира';
     }
 
-
     public function onDisplay(DisplayFactory $displayFactory, DisplayColumnFactory $columnFactory)
     {
         return $displayFactory->table()
@@ -72,7 +70,6 @@ class TournamentsSection extends Section implements Initializable
                 $columnFactory->datetime('created_at', 'Создан'),
             ])->paginate(20);
     }
-
 
     /**
      * @param FormFactory $formFactory
